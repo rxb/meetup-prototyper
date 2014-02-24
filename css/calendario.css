@@ -1,0 +1,206 @@
+/* line 9, ../scss/calendario.scss */
+.fc-calendar-container {
+  position: relative;
+}
+
+/* line 13, ../scss/calendario.scss */
+.fc-calendar {
+  width: 100%;
+  height: 100%;
+}
+/* line 16, ../scss/calendario.scss */
+.calendar-mini .fc-calendar {
+  height: 250px;
+}
+
+/* line 21, ../scss/calendario.scss */
+.calendar-mini {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+  background: #f7f7f7;
+  padding: 12px;
+  margin-top: 28px;
+}
+/* line 27, ../scss/calendario.scss */
+.inverted .calendar-mini {
+  background: #222222;
+}
+/* line 32, ../scss/calendario.scss */
+.calendar-mini .custom-header {
+  /*
+  border-top: 1px solid $C_lineGray;
+  .inverted &{
+  	border-color: $C_lineGrayInverted;
+  }
+  */
+}
+/* line 33, ../scss/calendario.scss */
+.calendar-mini .custom-header .fix, .calendar-mini .custom-header .flex {
+  padding: 5px;
+  vertical-align: middle;
+}
+/* line 48, ../scss/calendario.scss */
+.calendar-mini .fc-events {
+  display: none;
+}
+
+/* line 54, ../scss/calendario.scss */
+.fc-calendar .fc-head {
+  height: 30px;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(153, 153, 153, 0.1);
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+/* line 62, ../scss/calendario.scss */
+.inverted .fc-calendar .fc-head {
+  color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* line 69, ../scss/calendario.scss */
+.fc-calendar .fc-body {
+  -moz-border-radius: relative;
+  width: 100%;
+  height: 100%;
+  height: -moz-calc(100% - 30px);
+  height: -webkit-calc(100% - 30px);
+  height: calc(100% - 30px);
+}
+
+/* line 79, ../scss/calendario.scss */
+.fc-calendar .fc-row {
+  width: 100%;
+  border-bottom: 1px solid rgba(153, 153, 153, 0.1);
+}
+/* line 83, ../scss/calendario.scss */
+.inverted .fc-calendar .fc-row {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* line 89, ../scss/calendario.scss */
+.fc-four-rows .fc-row {
+  height: 25%;
+}
+
+/* line 93, ../scss/calendario.scss */
+.fc-five-rows .fc-row {
+  height: 20%;
+}
+
+/* line 97, ../scss/calendario.scss */
+.fc-six-rows .fc-row {
+  height: 16.66%;
+  height: -moz-calc(100%/6);
+  height: -webkit-calc(100%/6);
+  height: calc(100%/6);
+}
+
+/* line 105, ../scss/calendario.scss */
+.fc-calendar .fc-row > div,
+.fc-calendar .fc-head > div {
+  float: left;
+  height: 100%;
+  width: 14.28%;
+  /* 100% / 7 */
+  width: -moz-calc(100%/7);
+  width: -webkit-calc(100%/7);
+  width: calc(100%/7);
+  position: relative;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /*
+  .inverted &{
+  	border-color: $C_lineGrayInverted;
+  }
+  */
+}
+
+/* IE 9 is rounding up the calc it seems */
+/* line 128, ../scss/calendario.scss */
+.ie9 .fc-calendar .fc-row > div,
+.ie9 .fc-calendar .fc-head > div {
+  width: 14.2%;
+}
+
+/* line 132, ../scss/calendario.scss */
+.fc-calendar .fc-row > div {
+  padding: 4px;
+  overflow: hidden;
+  position: relative;
+  border: 4px solid transparent;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  /*
+  border: 3px solid $C_backgroundContent;
+  .inverted &{
+  	border-color: $C_backgroundContentInverted;
+  }
+  */
+}
+
+/* line 148, ../scss/calendario.scss */
+.fc-calendar .fc-head > div {
+  text-align: center;
+}
+
+/* line 152, ../scss/calendario.scss */
+.fc-calendar .fc-row > div > span.fc-date {
+  position: absolute;
+  width: 30px;
+  height: 20px;
+  bottom: 5px;
+  right: 5px;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.25);
+}
+/* line 163, ../scss/calendario.scss */
+.inverted .fc-calendar .fc-row > div > span.fc-date {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* line 168, ../scss/calendario.scss */
+.fc-calendar .fc-row > div > span.fc-weekday {
+  padding-left: 5px;
+  display: none;
+}
+
+/* line 173, ../scss/calendario.scss */
+.fc-calendar .fc-row > div.fc-today > span.fc-date {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.55);
+}
+/* line 176, ../scss/calendario.scss */
+.inverted .fc-calendar .fc-row > div.fc-today > span.fc-date {
+  color: white;
+}
+
+/* line 183, ../scss/calendario.scss */
+.fc-content > span.fc-date {
+  color: #13a1ff !important;
+  font-weight: bold;
+}
+
+/* line 189, ../scss/calendario.scss */
+.fc-calendar .fc-row > div.fc-out {
+  opacity: 0.6;
+}
+
+/* line 195, ../scss/calendario.scss */
+.fc-calendar .fc-head > div:last-child,
+.fc-calendar .fc-row > div:last-child,
+.fc-calendar .fc-head > div:last-child {
+  border-right: none;
+}
+
+/* line 199, ../scss/calendario.scss */
+.fc-calendar .fc-row:last-child {
+  border-bottom: none;
+}

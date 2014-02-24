@@ -1,0 +1,16 @@
+{
+	"name": "meetup-prototyping-tool",
+	"version": "0.0.2",
+	"description": "prototyping with handlebars for meetup",
+	"main": [
+		"**/*."
+	],
+	"dependencies": {
+		"sassquatch": "1.6.16",
+		"handlebars": "1.1.2",
+		"jquery": "2.0.3",
+		"moment": "2.4.0",
+		"davis": "0.9.8",
+		"google-code-prettify": "1.0.0"
+	}
+}

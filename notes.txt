@@ -1,0 +1,48 @@
+memberlist
+	search
+	list view
+	
+calendar
+	styling
+
+events
+	comments
+	try tearsheets
+	your rsvp status
+	
+talk
+	interface for post
+	xx like
+	xx timestamp
+	xx reply
+	formatting
+		strip most bbcode
+		break long strings
+		do something about newlines
+	add event comments
+	add photos
+	add plausible member photos
+	add replies
+	
+header
+	collapsible
+	add logos
+
+member mode
+	what does it look like
+	
+dues
+	think about it
+	
+related groups
+	xx down at the bottom
+	
+general
+	collapse column at small size
+	private groups
+	pay groups
+	
+	
+demo
+	set up a few different groups
+	

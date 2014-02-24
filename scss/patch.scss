@@ -1,0 +1,251 @@
+// STUFF THAT PROBABLY SHOULD BE BE INCORPORATED IN SASSQUATCH
+
+@import 'variables';
+@import 'compass/css3';
+
+// ------------ MIXINS ------------
+@mixin microclearfix{
+  &:before,
+  &:after {
+      content: " "; /* 1 */
+      display: table; /* 2 */
+  }
+  
+  &:after {
+      clear: both;
+  }
+}
+
+
+
+// ------------ INVERTED ------------
+
+.inverted {
+  color: $C_textSecondaryInverted;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color: $C_textPrimary;
+  .inverted &{
+    color: $C_textPrimaryInverted;
+  }
+}
+
+
+// ------------ DOC STRUCTURE ------------
+.doc-stripe{
+    background-color: white;
+    border-top: 1px solid $C_border;
+    &:first-child{
+        border-top: 0;
+    }
+}
+
+.doc-bounds{
+    max-width: 1000px;
+    margin: 0 auto;  
+    padding: $spacing*2.5 $spacing*2.5 $spacing*1.5;
+    @include microclearfix;
+	word-wrap: break-word;
+}
+
+@include respond-to(handhelds){
+	.doc-bounds{
+    	padding: $spacing $spacing 0;
+	}
+}
+
+.doc-bounds--600{
+	max-width: 600px;
+}
+
+.doc-box{
+	@include background-clip(padding-box);
+}
+
+.line-gutters.wide{
+	$s: $spacing*2.5;
+	margin-right: -($s);
+	& > .unit{
+		padding-right: $s;
+	}
+}
+
+.dividedList > li:first-child{
+	border-top: 0;
+	padding-top: 0;
+}
+
+// ------------ PAGE ------------
+.page{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background: rgba(0,0,0,.9);
+	@include transition(all .3s);
+	z-index: 5;
+	&.off{
+		@include translate(0, 100%);
+	}
+	.page-header{
+		background: rgba(255,255,255,.1);
+		background: #000;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 48px;
+		padding: $spacing;
+		border-bottom: 1px solid $C_lineGrayInverted;
+		@include box-sizing(border-box);
+	}
+	.page-body{
+		min-height: 100%;		
+		padding-top: 48px;
+		@include box-sizing(border-box);
+	}
+}
+
+
+
+
+// ------------ MODIFIERS ------------
+.big{
+	font-size: 18px;
+}
+
+.bg-gray{
+  background-color: #f4f4f4;
+}
+.bg-black{
+  background-color: #333333;
+}
+.bg-red{
+	background-color: $C_red;
+}
+
+.nobustout{
+	overflow: hidden;
+}
+
+.breakwords{
+	word-wrap:break-word;
+}
+
+.margin-minimal{
+	margin-bottom: 6px;
+}
+
+.less{
+	color: $C_textTertiary;
+	.inverted &{
+		color: $C_textTertiaryInverted;		
+	}
+}
+.clickable{
+	cursor: pointer;
+}
+
+.nobreak{
+	white-space: nowrap;
+}
+
+// ------------ NAMETAG ------------
+.nametag-photo{
+	// too weird to hardcode a pixel width of this
+	width: 100%;
+	background-position: center 40%;
+}
+
+.nametag-photo-name{
+	// too restricting to include padding here
+	padding: 0;
+}
+
+// ------------ BLOCK LIST ------------
+.blockList{
+	margin: 0 #{-($spacing)} 0 0;
+	padding: 0;
+	list-style: none;
+	li{
+		vertical-align: top;
+		display: inline-block;
+		width: 50%;
+		padding: 0 $spacing $spacing 0;
+		margin: 0;
+		@include box-sizing(border-box);
+	}
+	&.has3 li{
+		width: 33.33%;		
+	}
+	&.has4 li{
+		width: 25%;		
+	}
+	&.has5 li{
+		width: 20%;		
+	}
+}
+
+// ------------ SQUARES ------------
+$thumbs: (20, 30, 40, 60, 80, 120, 160);
+@each $thumb in $thumbs{
+	.thumb-#{$thumb}{
+		$thumbpx: #{$thumb}px;
+		background-color: $C_backgroundContentInverted;
+		@include background-size(cover);
+		display: inline-block;
+		margin-bottom: $spacing;
+		width: $thumbpx;
+		height: $thumbpx;
+		background-position: center center;
+		
+	}
+}
+
+// ------------ CIRCLES ------------
+$thumbs: (20, 30, 40, 60, 80, 120, 160);
+@each $thumb in $thumbs{
+	.avatar-#{$thumb}{
+		$thumbpx: #{$thumb}px;
+		background-color: $C_backgroundContentInverted;
+		@include background-size(cover);
+		display: inline-block;
+		margin-bottom: $spacing;
+		width: $thumbpx;
+		height: $thumbpx;
+		@include border-radius($thumbpx);
+		background-position: center center;
+	}
+}
+
+
+// ------------ HSCROLL ------------
+.hscroll-wrap{
+	-webkit-overflow-scrolling: touch;
+	overflow: scroll;
+	margin-left: -($spacing);
+	margin-right: -($spacing);
+	.hscroll{
+		padding-left: $spacing;
+		padding-right: $spacing;
+	}
+}
+
+// ------------ FIXFLEX ------------
+.fixflex{
+	display: table;
+	width: 100%;
+	.fix, .flex{
+		display: table-cell;
+		vertical-align: top;
+	}
+	.fix{
+		width: 1%;
+	}
+	.flex{
+		width: auto;
+	}
+}

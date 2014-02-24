@@ -1,0 +1,474 @@
+/* line 23, ../scss/patch.scss */
+.inverted {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* line 27, ../scss/patch.scss */
+h1, h2, h3, h4, h5, h6 {
+  color: rgba(0, 0, 0, 0.8);
+}
+/* line 29, ../scss/patch.scss */
+.inverted h1, .inverted h2, .inverted h3, .inverted h4, .inverted h5, .inverted h6 {
+  color: white;
+}
+
+/* line 36, ../scss/patch.scss */
+.doc-stripe {
+  background-color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 39, ../scss/patch.scss */
+.doc-stripe:first-child {
+  border-top: 0;
+}
+
+/* line 44, ../scss/patch.scss */
+.doc-bounds {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 30px 18px;
+  word-wrap: break-word;
+}
+/* line 9, ../scss/patch.scss */
+.doc-bounds:before, .doc-bounds:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+/* line 14, ../scss/patch.scss */
+.doc-bounds:after {
+  clear: both;
+}
+
+/* line 58, ../scss/patch.scss */
+.doc-bounds--600 {
+  max-width: 600px;
+}
+
+/* line 62, ../scss/patch.scss */
+.doc-box {
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+/* line 66, ../scss/patch.scss */
+.line-gutters.wide {
+  margin-right: -30px;
+}
+/* line 69, ../scss/patch.scss */
+.line-gutters.wide > .unit {
+  padding-right: 30px;
+}
+
+/* line 74, ../scss/patch.scss */
+.dividedList > li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* line 80, ../scss/patch.scss */
+.page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.9);
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  z-index: 5;
+}
+/* line 90, ../scss/patch.scss */
+.page.off {
+  -webkit-transform: translate(0, 100%);
+  -moz-transform: translate(0, 100%);
+  -ms-transform: translate(0, 100%);
+  -o-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+}
+/* line 93, ../scss/patch.scss */
+.page .page-header {
+  background: rgba(255, 255, 255, 0.1);
+  background: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 105, ../scss/patch.scss */
+.page .page-body {
+  min-height: 100%;
+  padding-top: 48px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 116, ../scss/patch.scss */
+.big {
+  font-size: 18px;
+}
+
+/* line 120, ../scss/patch.scss */
+.bg-gray {
+  background-color: #f4f4f4;
+}
+
+/* line 123, ../scss/patch.scss */
+.bg-black {
+  background-color: #333333;
+}
+
+/* line 126, ../scss/patch.scss */
+.bg-red {
+  background-color: #e2373c;
+}
+
+/* line 130, ../scss/patch.scss */
+.nobustout {
+  overflow: hidden;
+}
+
+/* line 134, ../scss/patch.scss */
+.breakwords {
+  word-wrap: break-word;
+}
+
+/* line 138, ../scss/patch.scss */
+.margin-minimal {
+  margin-bottom: 6px;
+}
+
+/* line 142, ../scss/patch.scss */
+.less {
+  color: rgba(0, 0, 0, 0.25);
+}
+/* line 144, ../scss/patch.scss */
+.inverted .less {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* line 148, ../scss/patch.scss */
+.clickable {
+  cursor: pointer;
+}
+
+/* line 152, ../scss/patch.scss */
+.nobreak {
+  white-space: nowrap;
+}
+
+/* line 157, ../scss/patch.scss */
+.nametag-photo {
+  width: 100%;
+  background-position: center 40%;
+}
+
+/* line 163, ../scss/patch.scss */
+.nametag-photo-name {
+  padding: 0;
+}
+
+/* line 169, ../scss/patch.scss */
+.blockList {
+  margin: 0 -12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 173, ../scss/patch.scss */
+.blockList li {
+  vertical-align: top;
+  display: inline-block;
+  width: 50%;
+  padding: 0 12px 12px 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 181, ../scss/patch.scss */
+.blockList.has3 li {
+  width: 33.33%;
+}
+/* line 184, ../scss/patch.scss */
+.blockList.has4 li {
+  width: 25%;
+}
+/* line 187, ../scss/patch.scss */
+.blockList.has5 li {
+  width: 20%;
+}
+
+/* line 195, ../scss/patch.scss */
+.thumb-20 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 20px;
+  height: 20px;
+  background-position: center center;
+}
+
+/* line 195, ../scss/patch.scss */
+.thumb-30 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 30px;
+  height: 30px;
+  background-position: center center;
+}
+
+/* line 195, ../scss/patch.scss */
+.thumb-40 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 40px;
+  height: 40px;
+  background-position: center center;
+}
+
+/* line 195, ../scss/patch.scss */
+.thumb-60 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 60px;
+  height: 60px;
+  background-position: center center;
+}
+
+/* line 195, ../scss/patch.scss */
+.thumb-80 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 80px;
+  height: 80px;
+  background-position: center center;
+}
+
+/* line 195, ../scss/patch.scss */
+.thumb-120 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 120px;
+  height: 120px;
+  background-position: center center;
+}
+
+/* line 195, ../scss/patch.scss */
+.thumb-160 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 160px;
+  height: 160px;
+  background-position: center center;
+}
+
+/* line 211, ../scss/patch.scss */
+.avatar-20 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border-radius: 20px;
+  background-position: center center;
+}
+
+/* line 211, ../scss/patch.scss */
+.avatar-30 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
+  background-position: center center;
+}
+
+/* line 211, ../scss/patch.scss */
+.avatar-40 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  -ms-border-radius: 40px;
+  -o-border-radius: 40px;
+  border-radius: 40px;
+  background-position: center center;
+}
+
+/* line 211, ../scss/patch.scss */
+.avatar-60 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  background-position: center center;
+}
+
+/* line 211, ../scss/patch.scss */
+.avatar-80 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 80px;
+  height: 80px;
+  -webkit-border-radius: 80px;
+  -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
+  border-radius: 80px;
+  background-position: center center;
+}
+
+/* line 211, ../scss/patch.scss */
+.avatar-120 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 120px;
+  height: 120px;
+  -webkit-border-radius: 120px;
+  -moz-border-radius: 120px;
+  -ms-border-radius: 120px;
+  -o-border-radius: 120px;
+  border-radius: 120px;
+  background-position: center center;
+}
+
+/* line 211, ../scss/patch.scss */
+.avatar-160 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 160px;
+  height: 160px;
+  -webkit-border-radius: 160px;
+  -moz-border-radius: 160px;
+  -ms-border-radius: 160px;
+  -o-border-radius: 160px;
+  border-radius: 160px;
+  background-position: center center;
+}
+
+/* line 226, ../scss/patch.scss */
+.hscroll-wrap {
+  -webkit-overflow-scrolling: touch;
+  overflow: scroll;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+/* line 231, ../scss/patch.scss */
+.hscroll-wrap .hscroll {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* line 238, ../scss/patch.scss */
+.fixflex {
+  display: table;
+  width: 100%;
+}
+/* line 241, ../scss/patch.scss */
+.fixflex .fix, .fixflex .flex {
+  display: table-cell;
+  vertical-align: top;
+}
+/* line 245, ../scss/patch.scss */
+.fixflex .fix {
+  width: 1%;
+}
+/* line 248, ../scss/patch.scss */
+.fixflex .flex {
+  width: auto;
+}

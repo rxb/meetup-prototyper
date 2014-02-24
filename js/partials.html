@@ -1,0 +1,52 @@
+<!-- partials -->
+<script type="text/x-handlebars-template" id="tl-radio">
+	<li class="touchlist-item" id="touchlist-item-{{id}}">
+    <label class="flex" for="{{id}}">{{label}}
+			{{#if hint}}<span class="hint">{{hint}}</span>{{/if}}			
+		</label>
+    <input type="radio" id="{{id}}" name="{{name}}" {{#checked}}checked="checked"{{/checked}} />
+  </li>
+</script>
+
+<script type="text/x-handlebars-template" id="tl-checkbox">
+	<li class="touchlist-item" id="touchlist-item-{{id}}">
+	  <label class="flex" for="{{id}}">{{label}}
+		{{#if hint}}<span class="hint">{{hint}}</span>{{/if}}
+		</label>
+    <input type="checkbox" id="{{id}}" name="{{name}}" {{#checked}}checked="checked"{{/checked}} />
+  </li>
+</script>
+
+<script type="text/x-handlebars-template" id="tl-text">
+	<li class="touchlist-item" id="touchlist-item-{{id}}">
+	  {{#if label}}<label for="{{id}}">{{label}}
+			{{#if hint}}<span class="hint">{{hint}}</span>{{/if}}
+		</label>{{/if}}
+    <input type="text" id="{{id}}" {{#if placeholder}}placeholder="{{placeholder}}"{{/if}} />
+  </li>
+</script>
+
+<script type="text/x-handlebars-template" id="tl-textarea">
+	<li class="touchlist-item" id="touchlist-item-{{id}}">
+    <textarea id="{{id}}" {{#if placeholder}}placeholder="{{placeholder}}"{{/if}}></textarea>
+  </li>
+</script>
+
+<script type="text/x-handlebars-template" id="tl-password">
+	<li class="touchlist-item" id="touchlist-item-{{id}}">
+	  {{#if label}}<label for="{{id}}">{{label}}
+			{{#if hint}}<span class="hint">{{hint}}</span>{{/if}}
+		</label>{{/if}}
+    <input type="password" id="{{id}}" {{#if placeholder}}placeholder="{{placeholder}}"{{/if}}/>
+  </li>
+</script>
+
+<script type="text/x-handlebars-template" id="tl-select">
+	<li class="touchlist-item" id="touchlist-item-{{id}}">
+	<select id="{{id}}">
+		{{#options}}
+    	<option>{{.}}</option>
+		{{/options}}
+	</select>
+  </li>
+</script>

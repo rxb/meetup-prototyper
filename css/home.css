@@ -1,0 +1,315 @@
+/* line 6, ../scss/home.scss */
+#member-mask {
+  height: 128px;
+  overflow-y: hidden;
+  text-align: justify;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+/* line 13, ../scss/home.scss */
+.member-dummy {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+}
+
+/* line 20, ../scss/home.scss */
+#members li {
+  line-height: 64px;
+}
+/* line 23, ../scss/home.scss */
+#members .avatar {
+  vertical-align: middle;
+  text-indent: -9999px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+/* line 30, ../scss/home.scss */
+#members .avatar:hover {
+  opacity: .8;
+  -webkit-transform: scale(0.95, 0.95);
+  -moz-transform: scale(0.95, 0.95);
+  -ms-transform: scale(0.95, 0.95);
+  -o-transform: scale(0.95, 0.95);
+  transform: scale(0.95, 0.95);
+}
+/* line 34, ../scss/home.scss */
+#members .avatar.count {
+  text-indent: 0;
+  color: #fff;
+  background: #e2373c !important;
+  text-align: center;
+}
+/* line 39, ../scss/home.scss */
+#members .avatar.count .count_number {
+  font-size: 12px;
+  line-height: 1em;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  height: 60px;
+}
+
+/* line 51, ../scss/home.scss */
+#stats {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  margin-bottom: 12px;
+  margin-top: 16px;
+}
+/* line 56, ../scss/home.scss */
+#stats .avatar {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: .75;
+}
+
+/* line 62, ../scss/home.scss */
+#talk-bar {
+  margin-bottom: 12px;
+}
+
+/* line 69, ../scss/home.scss */
+.replies {
+  background: #f7f7f7;
+  padding: 12px 12px 0;
+  margin-bottom: 12px;
+  position: relative;
+}
+/* line 74, ../scss/home.scss */
+.replies:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  border-bottom: 12px solid #f7f7f7;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+}
+
+/* line 87, ../scss/home.scss */
+.tinycal {
+  font-size: 10px;
+  width: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-top: 4px solid #e2373c;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.55);
+}
+/* line 95, ../scss/home.scss */
+.tinycal .day {
+  line-height: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 0;
+}
+
+/*
+<div class="photogrid">
+  <img src="images/dog-1.jpg" alt="Little doggie">
+  <img src="images/cat-1.jpg" alt="Little kittie">
+  ...
+</div>
+*/
+/* line 111, ../scss/home.scss */
+.photogrid {
+  /* Prevent vertical gaps */
+  line-height: 0;
+  -webkit-column-count: 5;
+  -webkit-column-gap: 0px;
+  -moz-column-count: 5;
+  -moz-column-gap: 0px;
+  column-count: 5;
+  column-gap: 0px;
+}
+
+/* line 123, ../scss/home.scss */
+.photogrid img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* line 133, ../scss/home.scss */
+#groupheader {
+  text-align: center;
+}
+
+/* line 137, ../scss/home.scss */
+#groupheader-icon {
+  width: 100px;
+  height: 100px;
+  margin-top: -100px;
+  background: red;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+/* line 147, ../scss/home.scss */
+.selected {
+  color: #13a1ff;
+}
+
+/* line 151, ../scss/home.scss */
+.tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.35);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 3px 8px 1px;
+  font-size: .8em;
+  margin-bottom: 12px;
+}
+/* line 158, ../scss/home.scss */
+.tag.blue {
+  background: #13a1ff;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media only screen and (max-width: 500px) {
+  /* line 176, ../scss/home.scss */
+  #groupheader {
+    height: 212px;
+  }
+  /* line 178, ../scss/home.scss */
+  #groupheader h2 {
+    font-size: 24px;
+  }
+  /* line 181, ../scss/home.scss */
+  #groupheader .meta {
+    font-size: 13px;
+  }
+
+  /* line 185, ../scss/home.scss */
+  #groupheader-icon {
+    width: 56px;
+    height: 56px;
+    margin-top: -56px;
+    font-size: 41px;
+    text-align: center;
+    line-height: 1em;
+    color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* line 196, ../scss/home.scss */
+  .block-at-handheld {
+    display: block;
+    width: 100%;
+  }
+
+  /* line 201, ../scss/home.scss */
+  #member-mask {
+    height: 192px;
+  }
+
+  /* line 206, ../scss/home.scss */
+  .line.linear-at-handheld, .line.linear-at-medium, .line-gutters.linear-at-handheld, .line-gutters.linear-at-medium {
+    margin-right: 0;
+  }
+  /* line 167, ../scss/home.scss */
+  .line.linear-at-handheld > .unit, .line.linear-at-medium > .unit, .line-gutters.linear-at-handheld > .unit, .line-gutters.linear-at-medium > .unit {
+    float: none;
+    width: auto;
+    padding-right: 0;
+  }
+
+  /* line 211, ../scss/home.scss */
+  .hide-at-handheld, .hide-at-medium {
+    display: none;
+  }
+
+  /* line 216, ../scss/home.scss */
+  .big {
+    font-size: 16px;
+  }
+}
+@media only screen and (min-width: 501px) and (max-width: 899px) {
+  /* line 222, ../scss/home.scss */
+  #groupheader {
+    height: 212px;
+  }
+
+  /* line 225, ../scss/home.scss */
+  #groupheader-icon {
+    width: 56px;
+    height: 56px;
+    margin-top: -56px;
+    font-size: 41px;
+    text-align: center;
+    line-height: 1em;
+    color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* line 238, ../scss/home.scss */
+  .line.linear-at-medium, .line-gutters.linear-at-medium {
+    margin-right: 0;
+  }
+  /* line 167, ../scss/home.scss */
+  .line.linear-at-medium > .unit, .line-gutters.linear-at-medium > .unit {
+    float: none;
+    width: auto;
+    padding-right: 0;
+  }
+
+  /* line 243, ../scss/home.scss */
+  .hide-at-medium {
+    display: none;
+  }
+}
+@media only screen and (min-width: 900px) {
+  /* line 249, ../scss/home.scss */
+  #groupheader {
+    height: 300px;
+  }
+
+  /* line 252, ../scss/home.scss */
+  #groupheader-icon {
+    width: 96px;
+    height: 96px;
+    margin-top: -96px;
+    font-size: 81px;
+    text-align: center;
+    line-height: 1em;
+    color: rgba(0, 0, 0, 0.1);
+  }
+}
+/* THIS IS SO BAD */
+/* line 273, ../scss/home.scss */
+.collapse-related {
+  display: none;
+}
+
+/* line 277, ../scss/home.scss */
+.groupinfo-collapsed #groupinfo {
+  max-height: 0;
+}
+/* line 280, ../scss/home.scss */
+.groupinfo-collapsed .collapse-related {
+  display: inline;
+}
+
+/* line 284, ../scss/home.scss */
+#groupinfo {
+  overflow: hidden;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  max-height: 600px;
+}
+
+/* STOP BEING SO BAD */

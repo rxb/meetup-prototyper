@@ -1,0 +1,291 @@
+@import 'compass/css3';
+@import 'variables';
+
+
+$avatar-h: 64px;
+#member-mask{
+	height: $avatar-h * 2;
+	overflow-y: hidden;	
+	text-align:justify;
+	position: relative;
+	margin-bottom: $spacing;
+}
+.member-dummy{
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+}
+
+#members{
+	li{
+		line-height: 64px;		
+	}
+	.avatar{
+		vertical-align: middle;
+		text-indent: -9999px;
+		overflow: hidden;
+		@include box-sizing(border-box);
+		@include transition(all .1s ease-in-out);
+		//opacity: 1;
+		&:hover{
+			opacity: .8;
+			@include scale(.95);
+		}
+		&.count{
+			text-indent: 0;
+			color: #fff;
+			background: $C_red!important;
+			text-align: center;
+			.count_number{
+				font-size: 12px;
+				line-height: 1em;
+			    display: table-cell;
+			    vertical-align:middle;
+			    text-align: center;
+				height: 60px;
+			}
+		}
+	}
+}
+
+#stats{
+	border-top: 1px solid $C_lineGray;
+	padding-top: $spacing + 8px;
+	margin-bottom: 12px;
+	margin-top: 16px;
+	.avatar{
+		@include filter(grayscale(100%));
+		opacity: .75;
+	}
+}
+
+#talk-bar{
+	//font-size: 20px;
+	margin-bottom: $spacing;
+	//background: $C_backgroundNav;
+	//padding: 4px;
+}
+
+.replies{
+	background: $C_backgroundNav;
+	padding: $spacing $spacing 0;
+	margin-bottom: $spacing;
+	position: relative;
+	&:before{
+		$size: 12px;
+		content: '';
+		display: block;
+		position: absolute;
+		top: -($size);
+		left: 16px;
+		border-bottom: $size solid $C_backgroundNav;
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+	}
+}
+
+.tinycal{
+	font-size: 10px;	
+	width: 18px;
+	font-weight: bold;
+	text-align: center;
+	border-top: 4px solid $C_red;
+	@include box-sizing(border-box);
+	color: $C_textSecondary;
+	.day{
+		line-height: 13px;
+		border: 1px solid $C_lineGray;
+		border-top: 0;
+	}
+}
+
+
+
+/*
+<div class="photogrid">
+  <img src="images/dog-1.jpg" alt="Little doggie">
+  <img src="images/cat-1.jpg" alt="Little kittie">
+  ...
+</div>
+*/
+.photogrid {
+   /* Prevent vertical gaps */
+   line-height: 0;
+   
+   -webkit-column-count: 5;
+   -webkit-column-gap:   0px;
+   -moz-column-count:    5;
+   -moz-column-gap:      0px;
+   column-count:         5;
+   column-gap:           0px;
+   
+}
+.photogrid img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+}
+
+
+
+
+
+#groupheader{
+	text-align: center;
+}
+
+#groupheader-icon{
+	$d: 100px;
+	width: $d;
+	height: $d;
+	margin-top: -($d);
+	background : red;
+	display: inline-block;
+	margin-bottom: $spacing;
+}
+
+.selected{
+	color: $C_blue;
+}
+
+.tag{
+	display: inline-block;
+	background: rgba(255,255,255,.35);
+	@include border-radius(3px);
+	padding: 3px 8px 1px;
+	font-size: .8em;
+	margin-bottom: $spacing;
+	&.blue{
+		background: $C_blue;
+		color: $C_textSecondaryInverted;
+	}
+}
+
+
+@mixin linearize{
+	margin-right: 0;
+	> .unit{
+		float: none;
+		width: auto;
+		padding-right: 0;
+	}
+}
+
+
+@include respond-to(handheld){
+	#groupheader{
+		height: 212px;
+		h2{
+			font-size: 24px;
+		}
+		.meta{
+			font-size: 13px;
+		}
+	}
+	#groupheader-icon{
+		$d: 56px;
+		width: $d;
+		height: $d;
+		margin-top: -($d);
+		font-size: $d - 15px;
+		text-align: center;
+		line-height: 1em;
+		color: $C_lineGray;
+	}
+	
+	.block-at-handheld{
+		display: block;
+		width: 100%;
+	}
+	
+	#member-mask{
+		height: $avatar-h * 3;
+	}
+	
+	.line, .line-gutters{
+		&.linear-at-handheld, &.linear-at-medium{
+			@include linearize;
+		}
+	}
+	
+	.hide-at-handheld, .hide-at-medium{
+		display: none;
+	}
+	
+
+	.big{
+		font-size: 16px;
+	}
+}
+
+@include respond-to(medium-screens){
+	#groupheader{
+		height: 212px;
+	}
+	#groupheader-icon{
+		$d: 56px;
+		width: $d;
+		height: $d;
+		margin-top: -($d);
+		font-size: $d - 15px;
+		text-align: center;
+		line-height: 1em;
+		color: $C_lineGray;
+		
+	}
+	
+	.line, .line-gutters{
+		&.linear-at-medium{
+			@include linearize;
+		}
+	}
+	
+	.hide-at-medium{
+		display: none;
+	}
+}
+
+@include respond-to(wide-screens){
+	#groupheader{
+		height: 300px;
+	}
+	#groupheader-icon{
+		$d: 96px;
+		width: $d;
+		height: $d;
+		margin-top: -($d);
+		font-size: $d - 15px;
+		text-align: center;
+		line-height: 1em;
+		color: $C_lineGray;
+		
+		
+	}
+}
+
+
+
+
+
+
+/* THIS IS SO BAD */
+
+.collapse-related{
+	display: none;
+}
+.groupinfo-collapsed{
+	#groupinfo{
+		max-height: 0;
+	}
+	.collapse-related{
+		display: inline;
+	}
+}
+#groupinfo{
+	overflow: hidden;
+	@include transition(all .4s);
+	max-height: 600px;
+}
+
+/* STOP BEING SO BAD */
+

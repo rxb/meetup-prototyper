@@ -1,0 +1,751 @@
+/* line 15, ../scss/fakesassquatch.scss */
+body, html {
+  padding: 0;
+  margin: 0;
+  font-family: "helvetica neue", helvetica, sans-serif;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+/* line 25, ../scss/fakesassquatch.scss */
+.inverted {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* line 29, ../scss/fakesassquatch.scss */
+h1, h2, h3, h4, h5, h6 {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+}
+/* line 32, ../scss/fakesassquatch.scss */
+.inverted h1, .inverted h2, .inverted h3, .inverted h4, .inverted h5, .inverted h6 {
+  color: white;
+}
+
+/* line 37, ../scss/fakesassquatch.scss */
+.touchheight {
+  padding-top: 12px;
+}
+
+/* line 41, ../scss/fakesassquatch.scss */
+h1 {
+  font-size: 48px;
+}
+
+/* line 42, ../scss/fakesassquatch.scss */
+h2 {
+  font-size: 36px;
+}
+
+/* line 43, ../scss/fakesassquatch.scss */
+h3 {
+  font-size: 24px;
+}
+
+/* line 44, ../scss/fakesassquatch.scss */
+h4 {
+  font-size: 18px;
+}
+
+/* line 50, ../scss/fakesassquatch.scss */
+address, article, aside, blockquote, center, dir, div, dd, details, dl, dt, fieldset, figcaption, figure, form, footer, frameset, h1, h2, h3, h4, h5, h6, hr, header, hgroup, isindex, menu, nav, noframes, noscript, ol, p, pre, section, summary, ul, input, select, textarea {
+  padding: 0;
+  margin: 0 0 12px;
+}
+/* line 53, ../scss/fakesassquatch.scss */
+address.margin-none, article.margin-none, aside.margin-none, blockquote.margin-none, center.margin-none, dir.margin-none, div.margin-none, dd.margin-none, details.margin-none, dl.margin-none, dt.margin-none, fieldset.margin-none, figcaption.margin-none, figure.margin-none, form.margin-none, footer.margin-none, frameset.margin-none, h1.margin-none, h2.margin-none, h3.margin-none, h4.margin-none, h5.margin-none, h6.margin-none, hr.margin-none, header.margin-none, hgroup.margin-none, isindex.margin-none, menu.margin-none, nav.margin-none, noframes.margin-none, noscript.margin-none, ol.margin-none, p.margin-none, pre.margin-none, section.margin-none, summary.margin-none, ul.margin-none, input.margin-none, select.margin-none, textarea.margin-none {
+  margin: 0;
+}
+/* line 56, ../scss/fakesassquatch.scss */
+address.margin-minimal, article.margin-minimal, aside.margin-minimal, blockquote.margin-minimal, center.margin-minimal, dir.margin-minimal, div.margin-minimal, dd.margin-minimal, details.margin-minimal, dl.margin-minimal, dt.margin-minimal, fieldset.margin-minimal, figcaption.margin-minimal, figure.margin-minimal, form.margin-minimal, footer.margin-minimal, frameset.margin-minimal, h1.margin-minimal, h2.margin-minimal, h3.margin-minimal, h4.margin-minimal, h5.margin-minimal, h6.margin-minimal, hr.margin-minimal, header.margin-minimal, hgroup.margin-minimal, isindex.margin-minimal, menu.margin-minimal, nav.margin-minimal, noframes.margin-minimal, noscript.margin-minimal, ol.margin-minimal, p.margin-minimal, pre.margin-minimal, section.margin-minimal, summary.margin-minimal, ul.margin-minimal, input.margin-minimal, select.margin-minimal, textarea.margin-minimal {
+  margin-bottom: 4px;
+}
+
+/* line 61, ../scss/fakesassquatch.scss */
+div {
+  margin: 0;
+}
+
+/* line 62, ../scss/fakesassquatch.scss */
+ul {
+  margin-left: 24px;
+}
+
+/* line 67, ../scss/fakesassquatch.scss */
+a:link, a:hover, a:active, a:visited {
+  color: #13a1ff;
+  text-decoration: none;
+}
+/* line 71, ../scss/fakesassquatch.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+/* line 78, ../scss/fakesassquatch.scss */
+.nametag {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: table;
+  width: 100%;
+  height: 140px;
+}
+/* line 86, ../scss/fakesassquatch.scss */
+.nametag .nametag-name {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.8)));
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+/* line 93, ../scss/fakesassquatch.scss */
+.fixflex {
+  display: table;
+  width: 100%;
+}
+/* line 96, ../scss/fakesassquatch.scss */
+.fixflex .fix, .fixflex .flex {
+  vertical-align: top;
+  display: table-cell;
+  padding-left: 12px;
+}
+/* line 100, ../scss/fakesassquatch.scss */
+.fixflex .fix:first-child, .fixflex .flex:first-child {
+  padding: 0;
+}
+/* line 104, ../scss/fakesassquatch.scss */
+.fixflex .fix {
+  width: 1%;
+}
+/* line 107, ../scss/fakesassquatch.scss */
+.fixflex .flex {
+  width: auto;
+}
+
+/* line 113, ../scss/fakesassquatch.scss */
+.figureset {
+  display: table;
+  width: 100%;
+}
+/* line 116, ../scss/fakesassquatch.scss */
+.figureset .figureset-figure, .figureset .figureset-description {
+  vertical-align: top;
+  display: table-cell;
+  padding-left: 12px;
+}
+/* line 120, ../scss/fakesassquatch.scss */
+.figureset .figureset-figure:first-child, .figureset .figureset-description:first-child {
+  padding: 0;
+}
+/* line 124, ../scss/fakesassquatch.scss */
+.figureset .figureset-figure {
+  width: 1%;
+}
+/* line 127, ../scss/fakesassquatch.scss */
+.figureset .figureset-description {
+  width: auto;
+}
+
+/* line 132, ../scss/fakesassquatch.scss */
+.blockList {
+  margin: 0 -12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 136, ../scss/fakesassquatch.scss */
+.blockList li {
+  vertical-align: top;
+  display: inline-block;
+  width: 50%;
+  padding: 0 12px 12px 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 144, ../scss/fakesassquatch.scss */
+.blockList.has3 li {
+  width: 33.33%;
+}
+/* line 147, ../scss/fakesassquatch.scss */
+.blockList.has4 li {
+  width: 25%;
+}
+/* line 150, ../scss/fakesassquatch.scss */
+.blockList.has5 li {
+  width: 20%;
+}
+
+/* line 155, ../scss/fakesassquatch.scss */
+.dividedList {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+/* line 159, ../scss/fakesassquatch.scss */
+.dividedList > li {
+  padding: 12px 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 162, ../scss/fakesassquatch.scss */
+.inverted .dividedList > li {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* line 165, ../scss/fakesassquatch.scss */
+.dividedList > li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* line 172, ../scss/fakesassquatch.scss */
+.paddedList {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+/* line 176, ../scss/fakesassquatch.scss */
+.paddedList li {
+  padding: 12px 0 0;
+}
+
+/* line 181, ../scss/fakesassquatch.scss */
+.inlineList {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+/* line 185, ../scss/fakesassquatch.scss */
+.inlineList li {
+  display: inline-block;
+}
+
+/* line 190, ../scss/fakesassquatch.scss */
+.hscroll-wrap {
+  -webkit-overflow-scrolling: touch;
+  overflow: scroll;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+/* line 195, ../scss/fakesassquatch.scss */
+.hscroll-wrap .hscroll {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* line 201, ../scss/fakesassquatch.scss */
+.line {
+  display: table;
+  width: 100%;
+  margin-right: 24px;
+  table-layout: fixed;
+}
+/* line 206, ../scss/fakesassquatch.scss */
+.line .unit {
+  display: table-cell;
+  vertical-align: top;
+  padding-right: 24px;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size1of2 {
+  width: 50%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size2of2 {
+  width: 100%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size1of3 {
+  width: 33.33333%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size2of3 {
+  width: 66.66667%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size3of3 {
+  width: 100%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size1of4 {
+  width: 25%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size2of4 {
+  width: 50%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size3of4 {
+  width: 75%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size4of4 {
+  width: 100%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size1of5 {
+  width: 20%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size2of5 {
+  width: 40%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size3of5 {
+  width: 60.0%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size4of5 {
+  width: 80%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size5of5 {
+  width: 100%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size1of6 {
+  width: 16.66667%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size2of6 {
+  width: 33.33333%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size3of6 {
+  width: 50%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size4of6 {
+  width: 66.66667%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size5of6 {
+  width: 83.33333%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size6of6 {
+  width: 100%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size1of7 {
+  width: 14.28571%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size2of7 {
+  width: 28.57143%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size3of7 {
+  width: 42.85714%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size4of7 {
+  width: 57.14286%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size5of7 {
+  width: 71.42857%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size6of7 {
+  width: 85.71429%;
+}
+/* line 214, ../scss/fakesassquatch.scss */
+.line .unit.size7of7 {
+  width: 100%;
+}
+
+/* line 222, ../scss/fakesassquatch.scss */
+.tabs {
+  line-style: none;
+  color: rgba(0, 0, 0, 0.25);
+  margin: 0 0 12px;
+  padding: 0;
+  display: block;
+}
+/* line 228, ../scss/fakesassquatch.scss */
+.tabs li {
+  padding: 0;
+  margin: 0 0 0 12px;
+  cursor: pointer;
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+}
+/* line 235, ../scss/fakesassquatch.scss */
+.tabs li:first-child {
+  margin-left: 0;
+}
+/* line 238, ../scss/fakesassquatch.scss */
+.inverted .tabs li {
+  color: rgba(255, 255, 255, 0.4);
+}
+/* line 241, ../scss/fakesassquatch.scss */
+.tabs li.selected {
+  color: #e2373c;
+  border-bottom: 2px solid #e2373c;
+}
+/* line 247, ../scss/fakesassquatch.scss */
+.tabs.full {
+  display: table;
+  width: 100%;
+}
+/* line 250, ../scss/fakesassquatch.scss */
+.tabs.full li {
+  display: table-cell;
+  margin: 0;
+  text-align: center;
+}
+
+/* line 258, ../scss/fakesassquatch.scss */
+.big {
+  font-size: 26px;
+}
+
+/* line 261, ../scss/fakesassquatch.scss */
+.small {
+  font-size: 14px;
+}
+
+/* line 264, ../scss/fakesassquatch.scss */
+.micro {
+  font-size: 10px;
+}
+
+/* LAYOUT PROPOSAL */
+/* line 273, ../scss/fakesassquatch.scss */
+.doc-section, .doc-section-collection {
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 6, ../scss/fakesassquatch.scss */
+.doc-section:before, .doc-section:after, .doc-section-collection:before, .doc-section-collection:after {
+  content: " ";
+  display: table;
+}
+/* line 10, ../scss/fakesassquatch.scss */
+.doc-section:after, .doc-section-collection:after {
+  clear: both;
+}
+/* line 277, ../scss/fakesassquatch.scss */
+.doc-section:first-child, .doc-section-collection:first-child {
+  border-top: 0;
+}
+/* line 281, ../scss/fakesassquatch.scss */
+.doc-section .doc-bounds, .doc-section-collection .doc-bounds {
+  max-width: 600px;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 290, ../scss/fakesassquatch.scss */
+.doc-section-collection {
+  background: #e7e7e7;
+}
+/* line 292, ../scss/fakesassquatch.scss */
+.doc-section-collection .doc-bounds {
+  padding: 12px 12px 0;
+}
+
+/* line 299, ../scss/fakesassquatch.scss */
+.doc-card {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin: 0 0 12px;
+}
+
+/* line 311, ../scss/fakesassquatch.scss */
+.doc-content {
+  padding: 12px 12px 1px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 314, ../scss/fakesassquatch.scss */
+.doc-content:first-child {
+  border-top: 0;
+}
+
+/* 
+SIMPLIFIED TOUCHLIST ITEMS
+They can go directly in to a .doc-card
+Just like anything else
+TODO: reconcile with production touchlist
+*/
+/* line 328, ../scss/fakesassquatch.scss */
+.touchlist-item {
+  display: table;
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  /* firefox 19+ */
+  /* ie */
+}
+/* line 332, ../scss/fakesassquatch.scss */
+.touchlist-item:first-child {
+  border-top: none;
+}
+/* line 335, ../scss/fakesassquatch.scss */
+.touchlist-item:active {
+  background: rgba(64, 197, 255, 0.2);
+}
+/* line 341, ../scss/fakesassquatch.scss */
+.touchlist-item label, .touchlist-item input, .touchlist-item select, .touchlist-item textarea, .touchlist-item .icon, .touchlist-item .dummy {
+  background: none;
+  display: table-cell;
+  padding: 8px 8px 8px 8px;
+  vertical-align: middle;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "helvetica neue", helvetica, sans-serif;
+}
+/* line 351, ../scss/fakesassquatch.scss */
+.touchlist-item label:last-child, .touchlist-item input:last-child, .touchlist-item select:last-child, .touchlist-item textarea:last-child, .touchlist-item .icon:last-child, .touchlist-item .dummy:last-child {
+  padding-left: 0;
+}
+/* line 354, ../scss/fakesassquatch.scss */
+.touchlist-item label:first-child, .touchlist-item input:first-child, .touchlist-item select:first-child, .touchlist-item textarea:first-child, .touchlist-item .icon:first-child, .touchlist-item .dummy:first-child {
+  padding-left: 8px;
+}
+/* line 359, ../scss/fakesassquatch.scss */
+.touchlist-item label.flex, .touchlist-item input.flex, .touchlist-item select.flex, .touchlist-item textarea.flex, .touchlist-item .icon.flex, .touchlist-item .dummy.flex {
+  width: auto;
+}
+/* line 363, ../scss/fakesassquatch.scss */
+.touchlist-item .icon {
+  width: 1%;
+}
+/* line 367, ../scss/fakesassquatch.scss */
+.touchlist-item label {
+  width: 10em;
+}
+/* line 370, ../scss/fakesassquatch.scss */
+.touchlist-item label .hint {
+  display: block;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.25);
+}
+/* line 378, ../scss/fakesassquatch.scss */
+.touchlist-item input, .touchlist-item select, .touchlist-item textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  margin: 0;
+  outline: 0;
+  font-size: 17px;
+  width: 100%;
+  line-height: 1.3;
+}
+/* line 388, ../scss/fakesassquatch.scss */
+.touchlist-item select {
+  background-image: url(http://specialsnowflake.com/mup/style/down.png);
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+/* line 394, ../scss/fakesassquatch.scss */
+.touchlist-item input[type="checkbox"], .touchlist-item input[type="radio"] {
+  background-position: right center;
+  background-repeat: no-repeat;
+  width: 48px;
+}
+/* line 399, ../scss/fakesassquatch.scss */
+.touchlist-item input[type="checkbox"] {
+  background-image: url(http://specialsnowflake.com/mup/style/checkbox.png);
+}
+/* line 401, ../scss/fakesassquatch.scss */
+.touchlist-item input[type="checkbox"]:checked {
+  background-image: url(http://specialsnowflake.com/mup/style/checkbox_checked.png);
+}
+/* line 405, ../scss/fakesassquatch.scss */
+.touchlist-item input[type="radio"] {
+  background-image: url(http://specialsnowflake.com/mup/style/radio.png);
+}
+/* line 408, ../scss/fakesassquatch.scss */
+.touchlist-item input[type="radio"]:checked {
+  background-image: url(http://specialsnowflake.com/mup/style/radio_checked.png);
+}
+/* line 413, ../scss/fakesassquatch.scss */
+.touchlist-item ::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.25);
+  font-style: italic;
+}
+/* line 414, ../scss/fakesassquatch.scss */
+.touchlist-item ::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.25);
+  font-style: italic;
+}
+/* line 415, ../scss/fakesassquatch.scss */
+.touchlist-item :-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.25);
+  font-style: italic;
+}
+/* line 416, ../scss/fakesassquatch.scss */
+.touchlist-item input:-moz-placeholder {
+  color: rgba(0, 0, 0, 0.25);
+  font-style: italic;
+}
+/* line 419, ../scss/fakesassquatch.scss */
+.touchlist-item img {
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* line 429, ../scss/fakesassquatch.scss */
+.thumb-20 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 20;
+  height: 20;
+}
+
+/* line 429, ../scss/fakesassquatch.scss */
+.thumb-30 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 30;
+  height: 30;
+}
+
+/* line 429, ../scss/fakesassquatch.scss */
+.thumb-40 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 40;
+  height: 40;
+}
+
+/* line 429, ../scss/fakesassquatch.scss */
+.thumb-80 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 80;
+  height: 80;
+}
+
+/* line 429, ../scss/fakesassquatch.scss */
+.thumb-120 {
+  background-color: #333333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: 120;
+  height: 120;
+}
+
+/********** extra stuff *************/
+/* line 445, ../scss/fakesassquatch.scss */
+.background-white {
+  background: #fff;
+}
+
+/* line 449, ../scss/fakesassquatch.scss */
+.background-dark {
+  background: #333333;
+}
+
+/* line 453, ../scss/fakesassquatch.scss */
+.background-blue {
+  background: #209EE5;
+}
+
+/* line 457, ../scss/fakesassquatch.scss */
+.background-red {
+  background: #e2373c;
+}
+
+/* line 461, ../scss/fakesassquatch.scss */
+.background-group {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(http://specialsnowflake.com/mup/style/mup.jpg);
+}
+
+/* line 468, ../scss/fakesassquatch.scss */
+.background-map {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100px;
+  background-image: url(http://maps.google.com/maps/api/staticmap?center=40.7261660,-73.9960227&zoom=16&size=600x400&maptype=roadmap&sensor=false&language=&markers=color:red|label:none|40.7261660,-73.9960227);
+}
+
+/* line 476, ../scss/fakesassquatch.scss */
+#extra-view {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: red;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+/* line 486, ../scss/fakesassquatch.scss */
+#extra-view.show {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
