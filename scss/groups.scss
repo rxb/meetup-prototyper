@@ -1,0 +1,273 @@
+@import 'compass/css3';
+@import 'variables';
+
+
+
+.button-photo{
+    background: rgba(0,0,0,.4);
+}
+
+
+.chapter-menu{
+	margin-bottom: 0;
+	li{
+		line-height: 42px;
+		vertical-align: middle;
+		margin-right: 12px;
+		a{
+			color: $C_textSecondary;
+		}
+	}
+}
+
+
+#header{
+	background: $C_backgroundNav;
+	.doc-bounds{
+		padding: 12px 30px;
+	}
+	#logo{
+		width: 68px;
+		height: 45px;
+	}
+}
+
+
+@include respond-to(handheld){
+	// fixed header
+	#header{
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		height: 47px;
+		border-bottom: 1px solid $C_lineGray;
+		#logo{
+			width: 46px;
+			height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			margin-top: 8px;
+		}
+		.doc-bounds{
+			padding: 0 12px;
+			line-height: 47px;
+			vertical-align: middle;
+		}
+	}
+	body{
+		padding-top: 47px;
+	}
+}
+
+
+// speeds up event bubbling & transitions somehow 
+// it is a mystery
+#groupList{
+    @include backface-visibility(hidden);
+}
+
+.follow-button{
+    .join, .joined{
+        //margin: -2px -2px 0 0;
+        background-image: url(../css/follow_divided.svg);
+        cursor: pointer;
+        height: 38px;
+        width: 34px;
+        margin: -12px 0 -12px -12px;
+        background-position: center center;
+        display: inline-block;
+    }
+    .joined{
+        margin-top: 0;
+        margin-left: 0;
+        background-image: url(../css/following_divided.svg);    
+        @include transform(scale(0) rotate(120deg));
+        @include transition(all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55) );
+        &.on{
+             @include transform(scale(1) rotate(0deg));
+        }    
+    }
+}
+
+
+// generic fillable icon
+.fillable{
+    height: 38px;
+    width: 34px;
+    margin: 0 auto;
+    background-position: center center;
+	display: inline-block;
+}
+.filled{
+    @extend .fillable;
+    @include transform(scale(0) rotate(120deg));
+    @include transition(all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55) ); 
+    &.on{
+         @include transform(scale(1) rotate(0deg));
+    } 
+}
+
+// specific fillable for follow
+.followable{
+    background-image: url(../css/follow_divided.svg);    
+    .filled{
+        background-image: url(../css/following_divided.svg);       
+    }
+}
+
+.followlabel{
+    text-transform: uppercase;
+    font-size: 8px;
+    color: #aaa;
+    text-align: center;
+    display: inline-block;
+}
+.group{
+    .fix{
+        text-align: center;
+        border-left: 1px solid #eee;
+        padding: 12px 8px;
+        min-width: 56px;
+    }
+}
+
+// diffword label animation
+.diffword{
+    .diff1, .diff2, del, ins{
+        display: inline-block;
+        overflow: hidden;
+        max-width: 0;
+        @include transition(all .4s);
+    }
+    &.show_diff1{
+        .diff1{
+            max-width: 1em;               
+        }
+
+    }
+    &.show_diff2{
+        .diff2{
+            max-width: 1em;                              
+        }
+       
+    }
+}
+
+
+// --------------------------------
+
+
+.join-button-wrap{
+    overflow: hidden;
+    height: 40px;
+    position: relative;
+    @include transition(all .2s );
+    .button, .joinword{
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .button{
+        @include transition(all .2s);        
+        opacity: 0;
+        margin-bottom: 4px;
+        &.on{
+            opacity: 1;
+        }
+    }
+    .joinword{
+        @include transition(all .2s);    
+        display: inline-block;            
+        opacity: 0;        
+        font-weight: bold;
+        &.on{
+            opacity: 1;
+        }
+    }
+}
+
+
+#catList{
+	li{
+		$r: 3px;
+        
+		.photo-button{
+			width: 100%; 
+			height: 120px;
+			position: relative;
+            @include border-radius($r);
+            background: #fff;
+		}
+		.photo-button-check{
+			@include border-radius($r);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			//background-image: url(../css/check.png); 
+			background-size: 100%; 
+			@include box-sizing(border-box); 
+			
+	   		 $grad_lead_in: 30%;
+	   		 $grad_0: rgba(22, 24, 27, 0);
+	   		 $grad_2: rgba(22, 24, 27, .9);
+	   		 background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop( $grad_lead_in, $grad_0), color-stop(100%, $grad_2));
+	   		 background: -webkit-linear-gradient(top, $grad_0  $grad_lead_in, $grad_2);
+	   		 background: -moz-linear-gradient(top, $grad_0  $grad_lead_in, $grad_2);
+	   		 background: -o-linear-gradient(top, $grad_0 $grad_lead_in, $grad_2);
+	   		 background: -ms-linear-gradient(top, $grad_0 $grad_lead_in, $grad_2);
+	   		 background: linear-gradient(top, $grad_0 $grad_lead_in, $grad_2);
+             //opacity: .3;
+             
+		}
+		.photo-button-photo{
+			@include border-radius($r);
+			//@include filter( grayscale(50%) );	
+			height: 100%;
+			width: 100%;	
+			position: absolute;
+			top: 0;
+			left: 0;
+			@include background-size(cover);
+            //opacity: .5;
+            	
+		}
+		.photo-button-label{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			color: #fff;
+			font-weight: bold;
+			//text-align: center;
+			@include box-sizing(border-box); 
+		}
+		
+		&.on{
+			.photo-button-photo{
+                //opacity: 1;
+				//@include filter( grayscale(0%) );
+				
+			}
+			.photo-button-check{
+                //opacity: 1;
+				border: 8px solid $C_blue;
+				//background-color: $C_overlayPressed;
+				&:after{
+					background-image: url(../css/check_on.png);   
+					background-size: 100%;
+					background-repeat: no-repeat;
+					content: "";
+					display: block;
+					position: absolute;
+					right: -1px;
+					top: -1px;
+					height: 32px;
+					width: 33px;
+				}
+			}
+		}
+	}
+}

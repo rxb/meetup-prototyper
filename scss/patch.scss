@@ -2,6 +2,8 @@
 
 @import 'variables';
 @import 'compass/css3';
+@import '../bower_components/meetup-swatches/sass/colors';
+
 
 // ------------ MIXINS ------------
 @mixin microclearfix{
@@ -30,7 +32,13 @@ h1, h2, h3, h4, h5, h6{
     color: $C_textPrimaryInverted;
   }
 }
-
+.inverted{
+	input, textarea, select{
+		border-color: $C_lineGrayInverted;
+		background: $C_backgroundContentInverted;
+		color: $C_textPrimaryInverted;
+	}
+}
 
 // ------------ DOC STRUCTURE ------------
 .doc-stripe{
@@ -42,11 +50,24 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .doc-bounds{
-    max-width: 1000px;
+    max-width: 1040px;
     margin: 0 auto;  
-    padding: $spacing*2.5 $spacing*2.5 $spacing*1.5;
+    padding: $spacing*2.5 $spacing*2.5 $spacing*1;
     @include microclearfix;
 	word-wrap: break-word;
+	@include respond-to(handheld){
+		padding: $spacing*2 $spacing $spacing*1;
+	}
+}
+
+.doc-bounds--medium{
+    @extend .doc-bounds;
+    max-width: 600px;
+}
+
+.doc-bounds--narrow{
+    @extend .doc-bounds;
+    max-width: 420px;
 }
 
 @include respond-to(handhelds){
@@ -61,6 +82,24 @@ h1, h2, h3, h4, h5, h6{
 
 .doc-box{
 	@include background-clip(padding-box);
+	border-color: $C_lineGray;
+}
+
+
+
+/*
+.line, .line-gutters{
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+    .unit{
+        display: block;
+    }
+}
+*/
+
+.line-gutters{
+    margin-bottom: 0;
 }
 
 .line-gutters.wide{
@@ -74,6 +113,15 @@ h1, h2, h3, h4, h5, h6{
 .dividedList > li:first-child{
 	border-top: 0;
 	padding-top: 0;
+}
+
+.doc-content{
+    padding-bottom: 0;
+    @include microclearfix;
+    border-top-color: $C_lineGray;
+    .inverted &{
+        border-top-color: $C_lineGrayInverted;        
+    }
 }
 
 // ------------ PAGE ------------
@@ -109,6 +157,46 @@ h1, h2, h3, h4, h5, h6{
 	}
 }
 
+// ------------ PANEL ------------
+.panel{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	@include transition(all .15s);
+    @include translate3d(0, 0, 0);
+    @include backface-visibility(hidden);
+	z-index: 5; 
+	padding-top: 40px; 
+	&.off{
+		@include scale(.9);
+        opacity: 0;
+	}
+    
+    // anything not static positioned needs this. sad but true
+    .nametag-photo, .nametag-photo-name, .button, #panel-groupinfo-close{
+        @include backface-visibility(hidden);        
+    }
+}
+
+.shade{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+    z-index: 4;
+    background: rgba(0,0,0,.7);
+    opacity: 1;
+    @include transition(all .15s);
+    @include translate(0, 0);
+    z-index: 3;
+    &.off{
+        opacity: .01; 
+    }
+}
 
 
 
@@ -118,7 +206,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .bg-gray{
-  background-color: #f4f4f4;
+  background-color: $C_backgroundCollection;
 }
 .bg-black{
   background-color: #333333;
@@ -163,9 +251,11 @@ h1, h2, h3, h4, h5, h6{
 .nametag-photo-name{
 	// too restricting to include padding here
 	padding: 0;
+    padding-top: 20px;
 }
 
 // ------------ BLOCK LIST ------------
+$has: 6, 5, 4, 3, 2, 1;
 .blockList{
 	margin: 0 #{-($spacing)} 0 0;
 	padding: 0;
@@ -178,19 +268,29 @@ h1, h2, h3, h4, h5, h6{
 		margin: 0;
 		@include box-sizing(border-box);
 	}
-	&.has3 li{
-		width: 33.33%;		
+	
+
+	@each $h in $has{
+		&.has#{$h} li{ width: percentage(1/$h); }
 	}
-	&.has4 li{
-		width: 25%;		
+
+	@include respond-to(medium-screens){
+		@each $h in $has{
+			&.has#{$h}-at-medium li{ width: percentage(1/$h); }
+		}
 	}
-	&.has5 li{
-		width: 20%;		
+	
+	@include respond-to(handheld){
+		@each $h in $has{
+			&.has#{$h}-at-handheld li{ width: percentage(1/$h); }
+		}
 	}
+
+	
 }
 
 // ------------ SQUARES ------------
-$thumbs: (20, 30, 40, 60, 80, 120, 160);
+$thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
 @each $thumb in $thumbs{
 	.thumb-#{$thumb}{
 		$thumbpx: #{$thumb}px;
@@ -206,7 +306,7 @@ $thumbs: (20, 30, 40, 60, 80, 120, 160);
 }
 
 // ------------ CIRCLES ------------
-$thumbs: (20, 30, 40, 60, 80, 120, 160);
+$thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
 @each $thumb in $thumbs{
 	.avatar-#{$thumb}{
 		$thumbpx: #{$thumb}px;
@@ -248,4 +348,269 @@ $thumbs: (20, 30, 40, 60, 80, 120, 160);
 	.flex{
 		width: auto;
 	}
+}
+
+
+.button-flat, .button-flat--gray, .button-flat--white, .button-flat--black, .button-flat--red, .button-photo, .button-photo--white, .button, button, input[type="submit"], .primary, .button.primary, .button--primary, input[type="submit"].primary, input[type="submit"].button--primary, .button--black, input[type="submit"].button--black, .button--white, .button--blue, input[type="submit"].button--blue{
+    padding: 11px 18px 9px 18px;
+	line-height: 22px!important;
+}
+
+.button-flat{
+    @include transition(none);
+}
+
+.button--facebook{
+	@extend .button;
+	background: $C_facebook;
+}
+
+
+// ------------ TABS ------------
+.tabs{
+	line-style: none;
+	color : $C_textTertiary;
+	margin: 0 0 $spacing;
+	padding: 0;
+	display: block;
+	li{
+		$lineh: 2px;
+		padding: 0;
+		margin: 0 0 0 $spacing;
+		cursor: pointer;
+		display: inline-block;
+		border-bottom: $lineh solid transparent;
+		&:first-child{
+			margin-left: 0;
+		}
+		.inverted &{
+			color : $C_textTertiaryInverted;			
+		}
+		&.selected{
+			color: $C_red;
+			border-bottom: $lineh solid $C_red;
+			
+		}
+	}
+	&.full{
+		display: table;
+		width: 100%;
+		li{
+			display: table-cell;
+			margin: 0;
+			text-align: center;
+		}
+	}
+}
+
+// PILLS
+
+.pill{
+    background: $C_blue;
+    color: white;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 10px;
+    line-height: 1em;
+    vertical-align: middle;
+    font-size: .8em;
+    text-transform: uppercase;
+}
+
+
+// FLEXGRID TEST
+.grid-test{
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+    margin-right: -($spacing*2);
+    .unit-test{
+        padding-right: $spacing*2;
+    }
+    @include respond-to(handheld){
+    	-webkit-box-orient: vertical;
+    	-moz-box-orient: vertical;
+    	box-orient: vertical;   
+    	-webkit-box-direction: reverse;
+    	-moz-box-direction: reverse;
+    	box-direction: reverse;
+        margin-right: 0;
+        .unit-test{
+            width: auto;
+            padding-right: 0;
+            padding-bottom: 1px;
+        }
+    }
+}
+
+
+@mixin linearize{
+	margin-right: 0;
+	> .unit{
+		float: none;
+		width: auto;
+		padding-right: 0;
+	}
+}
+
+
+
+@include respond-to(handheld){
+	
+	.line, .line-gutters{
+		&.linear-at-handheld, &.linear-at-medium{
+			@include linearize;
+		}
+	}
+	
+	.block-at-handheld{
+		display: block;
+		width: 100%;
+	}
+	
+	.hide-at-handheld, .hide-at-medium{
+		display: none;
+	}
+	
+	.inlineblock-at-handheld{
+		display: inline-block;
+	}
+
+	.big{
+		font-size: 16px;
+	}
+    
+	.center-at-handheld, .center-at-medium{
+        text-align: center;
+	}
+	
+
+}
+
+@include respond-to(medium-screens){
+
+	.line, .line-gutters{
+		&.linear-at-medium{
+			@include linearize;
+		}
+	}
+	
+	.hide-at-medium{
+		display: none;
+	}
+    
+	.center-at-medium{
+        text-align: center;
+	}
+}
+
+
+/* 
+SIMPLIFIED TOUCHLIST ITEMS
+They can go directly in to a .doc-card
+Just like anything else
+TODO: reconcile with production touchlist
+*/
+ul.doc-box{
+	padding: 0;
+	margin: 0;
+}
+.touchlist-item{
+  display: table;
+  width: 100%;
+  border-top: 1px solid $C_border;
+  &:first-child{
+    border-top: none;
+  }
+  &:active{
+    background: $C_overlayPressed;
+  }
+
+  // styles for all the table cells
+  // .dummy is an all-purpose general container
+  label, input, select, textarea, .icon, .dummy{
+    background: none;
+    display: table-cell;
+    padding: $spacing-small $spacing-small $spacing-small $spacing-small;
+    vertical-align: middle;
+    @include box-sizing(border-box);
+    font-family: "helvetica neue", helvetica, sans-serif;
+	@include box-shadow(none);
+  
+    // keep the padding from stacking up between cells
+    &:last-child{
+        padding-left: 0;
+    }
+    &:first-child{
+        padding-left: $spacing-small;
+    }
+
+    // sometimes things need to flex
+    &.flex{
+      width: auto;
+    }
+  }
+  .icon{
+    width: 1%;
+  }
+
+  label{
+    width: 10em;
+    // hint text is a <span> inside of a label
+    .hint{
+      display: block;
+      font-size: 11px;
+      color: $C_textTertiary;
+    }
+  }
+
+  // form elements
+  input, select, textarea{
+    @include appearance(none);
+    border: none;
+    margin: 0;
+    outline: 0;
+    font-size: 17px;
+    width: 100%;
+    line-height: 1.3;
+  }
+
+  select{
+    background-image: url(http://specialsnowflake.com/mup/style/down.png); 
+    background-position: right center;
+    background-repeat: no-repeat;
+	height: auto;
+  }
+
+  input[type="checkbox"], input[type="radio"]{
+    background-position: right center;
+    background-repeat: no-repeat;
+    width: 48px;
+  }
+  input[type="checkbox"]{
+    background-image: url(http://specialsnowflake.com/mup/style/checkbox.png); 
+    &:checked{
+      background-image: url(http://specialsnowflake.com/mup/style/checkbox_checked.png); 
+    }
+  }
+  input[type="radio"]{
+    background-image: url(http://specialsnowflake.com/mup/style/radio.png); 
+
+    &:checked{
+      background-image: url(http://specialsnowflake.com/mup/style/radio_checked.png); 
+    }
+  }
+	
+$C_textTertiary: #999;	
+  ::-webkit-input-placeholder { color: $C_textTertiary; font-style: italic;}
+  ::-moz-placeholder { color: $C_textTertiary; font-style: italic;} /* firefox 19+ */
+  :-ms-input-placeholder { color: $C_textTertiary; font-style: italic;} /* ie */
+  input:-moz-placeholder { color: $C_textTertiary; font-style: italic;}
+
+  // just resetting image styling to align middle
+  img{
+    margin: 0;
+    vertical-align: middle;
+  }
+
 }

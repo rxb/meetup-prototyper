@@ -10,7 +10,6 @@
 		"handlebars": "1.1.2",
 		"jquery": "2.0.3",
 		"moment": "2.4.0",
-		"davis": "0.9.8",
-		"google-code-prettify": "1.0.0"
+        "lazyloadxt": "1.0.2"
 	}
 }

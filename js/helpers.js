@@ -93,8 +93,64 @@ Handlebars.registerHelper ('truncate', function (str, len) {
     return str;
 });
 
+
+Handlebars.registerHelper ('truncateMean', function (str, len) {
+    if (str.length > len) {
+        var new_str = str.substr (0, len+1);
+
+        while (new_str.length) {
+            var ch = new_str.substr ( -1 );
+            new_str = new_str.substr ( 0, -1 );
+
+            if (ch == ' ') {
+                break;
+            }
+        }
+
+        if ( new_str == '' ) {
+            new_str = str.substr ( 0, len );
+        }
+
+        return new Handlebars.SafeString ( new_str +'...' ); 
+    }
+    return str;
+});
+
+
 Handlebars.registerHelper('json', function(context) {
     return JSON.stringify(context);
+});
+
+
+Handlebars.registerHelper('compare', function(lvalue, rvalue, options) {
+
+    if (arguments.length < 3)
+        throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+
+    operator = options.hash.operator || "==";
+
+    var operators = {
+        '==':       function(l,r) { return l == r; },
+        '===':      function(l,r) { return l === r; },
+        '!=':       function(l,r) { return l != r; },
+        '<':        function(l,r) { return l < r; },
+        '>':        function(l,r) { return l > r; },
+        '<=':       function(l,r) { return l <= r; },
+        '>=':       function(l,r) { return l >= r; },
+        'typeof':   function(l,r) { return typeof l == r; }
+    }
+
+    if (!operators[operator])
+        throw new Error("Handlerbars Helper 'compare' doesn't know the operator "+operator);
+
+    var result = operators[operator](lvalue,rvalue);
+
+    if( result ) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+
 });
 
 
@@ -150,4 +206,8 @@ function defaultRenderCompleteActions(){
 	$('.hscroll').hscroll(); 
 	$('.tabs').tabs(); 
 	$('body').css({backgroundColor: $('[class^=doc-stripe]:last').css('backgroundColor')}); // make last color extend to bottom
+    $('body').delegate('a.fake-feature', 'click', function(e){
+        e.preventDefault();
+        alert("Thanks for clicking! This feature hasn't actually been built yet.");
+    });
 }

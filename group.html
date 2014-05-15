@@ -1,0 +1,335 @@
+<html>
+<head>
+	<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
+	<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	
+	<script type="text/javascript" src="js/helpers.js"></script>
+	<script type="text/javascript" src="js/gimme.js"></script>
+	<script type="text/javascript" src="js/extras.js"></script>
+	
+	<link href="bower_components/sassquatch/css/sassquatch.css" type="text/css" rel="stylesheet" />
+	<link href="css/whitney.css" type="text/css" rel="stylesheet" /> <!-- whitney will get bowerized -->
+	<link href="css/patch.css" type="text/css" rel="stylesheet" />
+	<link href="css/groups.css" type="text/css" rel="stylesheet" />
+	
+	<link rel="stylesheet" type="text/css" href="components/ElegantIcons/style.css" />
+
+</head>
+<body>
+
+
+
+<script type="text/html" id="main-template">
+<!-- pages -->
+<div class="page off inverted" id="page-questions">
+	<div class="page-header">
+		<div class="fixflex">
+			<div class="flex big">
+				<h3>Apply to join</h3>
+			</div>
+			<div class="fix">
+				<div id="page-questions-close" class="clickable nobreak"><span class="arrow_carrot-down_alt2"></span> Done</div>
+			</div>
+		</div>
+	</div>
+	<div class="page-body" style="" id="content-questions">
+		
+	</div>
+</div>
+
+
+
+<!-- screen start -->
+<div id="C_page" class="lt doc-stripe bg-gray">
+	<div class="doc-bounds">
+		<div id="chapterHeader" class="doc-box">
+			<div id="chapter-banner" class="doc-content bg-red inverted" style="text-align: center; display: table; width: 100%; box-sizing: border-box;">
+				<h1 style="height: 120px; display: table-cell; vertical-align: middle; ">
+					{{group.name}}
+				</h1>
+			</div>
+			<div id="chapter-navigation" class=" fixflex">
+				<div class="flex doc-content" style="padding-top: 8px; padding-bottom: 8px;">
+					<ul id="group-links" class="chapter-menu inlineList">
+						<li class="selected">
+							<a href="" class="fake-feature">Home</a>
+						</li>
+						<li class="">
+							<a href="" class="fake-feature">Members</a>
+						</li>
+						<li class="">
+							<a href="" class="fake-feature">Sponsors</a>
+						</li>
+						<li>
+							<a href="" class="fake-feature">Photos</a>
+						</li>
+						<li class="">
+							<a href="" class="fake-feature">Discussions</a>
+						</li>
+					</ul>
+				</div>
+				<!--
+				<div class="fix doc-content" style="white-space: nowrap; padding: 6px 12px 0">
+						<span class="button follow-button follow">
+						
+							<span class="join"><span class="joined" ></span></span> <span class="joinword">Follow</span>
+						</span>
+						<a class="button primary fake-feature" style="white-space: nowrap;">Join</a>
+				</div>
+				-->
+				
+				
+				<div class="fix doc-content divided follow" style="white-space: nowrap; padding: 6px 12px 0">
+						<div class="join" data-join_mode="{{join_mode}}" data-join_info='{{json join_info}}' style="display: inline-block; vertical-align: middle;">
+							<div class="joined" ></div>
+						</div>
+						<div class="join-button-wrap" style="display: inline-block; vertical-align: top;">
+							<div class="joinword on" style="vertical-align: middle; line-height: 40px;">Follow</div> 
+							<div class="button primary" style="white-space: nowrap;">Become a member</div>
+						</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="line-gutters">
+			<div class="unit size1of4">
+				<div id="C_nav">
+					<div id="C_metabox" class="doc-box">
+						
+						<div class="doc-content">
+							<div style="margin-bottom: 16px;  background-size: cover; height: 140px; width: 100%; background-image: url({{group.group_photo.photo_link}})"></div>
+							<div itemscope="" itemtype="http://schema.org/Organization">
+								<div class="adr" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
+									<h3 class="margin-bottom padding-none">
+										<a href="http://www.meetup.com/cities/us/ny/new_york/"><span class="locality" itemprop="addressLocality">{{group.city}}</span>, <span class="region" itemprop="addressRegion">{{group.state}}</span></a>
+									</h3>
+								</div>
+							</div>
+							
+							<h4>Founded:</h4>
+							<p>{{dateFormat group.created}}</p>
+							
+							<h4>Members:</h4>
+							<p>{{group.members}} {{group.who}}</p>
+
+							<h4>Organized by:</h4>
+							<p>{{group.organizer.name}}</p>
+							
+						</div>
+					</div>
+					<div class="doc-box">
+						<div id="meetup_serendipity" class="doc-content">
+							<h4 class="margin-bottom">
+								People in this<br>
+								Meetup are also in:
+							</h4>
+							<ul class="dividedList">
+								{{#group.similar_groups}}
+								<li class="groupinfo-widget">
+									<div class="figureset">
+										<div class="figureset-figure">
+											<div class="thumb-60 margin-bottom" style="background-image: url({{photos.[0].thumb_link}});"></div>
+										</div>
+										<div class="figureset-description">
+											<h5 class="small">
+												<a class="omnCamp omngj_sj35_also_" href="">{{name}}</a>
+											</h5>
+								
+										</div>
+									</div>
+								</li>
+								{{/group.similar_groups}}
+							</ul>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+			<div class="unit size3of4">
+					<div id="urf-chapter-description" class="doc-box">
+						<div class="doc-content">
+							<div class="groupDesc" id="groupDesc">
+								{{{group.description}}}
+							</div>
+							<h3>
+								We&apos;re {{numberFormat group.members}} {{group.who}}
+							</h3>
+							<ul class="inlineList">
+								<li>{{#members}}
+									<div class="thumb-40" style="background-image: url({{photo}});"></div>
+									{{/members}}
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="v4-gh-main-column" id="v4-gh-main-column">
+						<div class="doc-box" id="events-list-module">
+							
+							<div class="doc-content border-none" style="padding-top: none;">
+								<h2>Upcoming Meetups</h2>
+								<ul id="ajax-container" class="dividedList event-list clearfix">
+									{{#events}}
+										<li class="line event-item isAutosched hide-tools" itemscope="" itemtype="http://data-vocabulary.org/Event">
+											<p class="margin-none">{{dateFormat time format="dddd, MMM Do, YYYY [at] h:mm a"}}</p>
+											<h3 class="margin-none padding-none">
+												<a href="">
+												{{name}}
+												</a>
+											</h3>
+											
+
+											<p class="margin-minimal">23 {{group.who}} attending</p>
+						
+											{{#description}}
+												<p class="small">{{truncate . 300}}</p>
+											{{/description}}
+								
+										</li>
+									{{/events}}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+		</div>
+	</div><!-- C_context -->
+</div><!-- C_pageBody -->
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+
+$(function(){	
+	/* 
+	* Uncomment the data you want -- it will be available in the template 
+	* Check out the Meetup API docs for a list of fields to use in the template
+	* http://www.meetup.com/meetup_api/docs/
+	*
+	* A few notes:
+	* -- You can specify any field supported by the API
+	* -- You can leave every field unspecified except "gimme" -- something random/fun will be picked for you.
+	*/
+	
+	/* Add your own pre-rendering JS here */
+	function getHashParams() {
+		var hashParams = {};
+		var e, a = /\+/g,
+			// Regex for replacing addition symbol with a space
+			r = /([^&;=]+)=?([^&;]*)/g,
+			d = function(s) {
+				return decodeURIComponent(s.replace(a, " "));
+			},
+			q = window.location.hash.substring(1);
+
+		while (e = r.exec(q))
+		hashParams[d(e[1])] = d(e[2]);
+
+		return hashParams;
+	}
+	var opts = getHashParams();	
+	opts.favtype = opts.favtype || 'circle';
+	
+	var shoppingList = [
+		//{"gimme": "groups", "page": 40, "zip": "97227"},		
+		{"gimme": "group", "group_id": opts.groupid},
+		//{"gimme": "open_events"}, 
+		//{"gimme": "dates_with_open_events"}, 
+		{"gimme": "events", "page": 15, "group_id": opts.groupid}, 
+		//{"gimme": "event"},		
+		//{"gimme": "rsvps"},	
+		//{"gimme": "event_comments"},
+		//{"gimme": "photo_albums"},
+		//{"gimme": "photos"},
+		{"gimme": "members", "page": 16, "group_id": opts.groupid},
+		//{"gimme": "profile"},
+		//{"gimme": "categories"},
+		//{"gimme": "discussions", "page": 9}
+	];
+
+
+
+	var extraContext = $.extend( shoppingList, {"opts": opts, "interests": [
+		{"name": "Hiking", "count": 1023},
+		//{"name": "Autism", "count": 639},
+		{"name": "Swimming", "count": 5102},
+		{"name": "Javascript", "count": 69}
+	]} ); // anything else to add to the handlebars context?
+	
+	// Let's go!
+	var gme = new Gimme(shoppingList, function(){
+		$("#template-holder").load('./js/partials.html', function(){ // load partials
+			$('body').append( Handlebars.compile( $('#main-template').html() )( gme.context ) ); // render template
+			defaultRenderCompleteActions(); // do standard jquery magicks
+			
+			function set_wrap_width($wrap, $ref){
+				$wrap.width($ref.outerWidth());
+			}
+			
+			$('.follow').click(function(){
+				var $this = $(this);
+				var $join = $this.find('.join');
+				var $joined = $join.find('.joined');
+				var $join_button_wrap = $join.next();
+				var $join_button = $join_button_wrap.find('.button');
+				var $join_label = $('.joinword');
+				
+				if($this.data("join_mode") == "approval"){
+					console.dir($this.data("join_info"));
+					$('#content-questions').html( Handlebars.compile( $('#questions-template').html() )( {"join_info": $this.data("join_info")} ) );
+					$('#page-questions').removeClass("off");
+					return false;
+				}
+				
+				if($joined.hasClass('on')){
+					$joined.removeClass('on');
+					
+					$join_button.removeClass('on');
+					$joined.one(transitionEnd, function(){
+						$join_label.text('Follow');
+						set_wrap_width($join_button_wrap, $join_label);												
+						$join_label.addClass('on');
+					});
+				}
+				else{
+					$joined.addClass('on');	
+					$join_label.removeClass('on');
+					
+					$joined.one(transitionEnd, function(){
+						$join_label.text('Following');	
+						setTimeout(function(){
+							set_wrap_width($join_button_wrap, $join_button);												
+							$join_button.addClass('on');	
+																
+						}, 200);
+					});	
+
+				}
+			});
+			
+			// break out of closure
+			setTimeout(function(){
+				var $join_button_wrap = $('.join-button-wrap');			
+				var $join_label = $('.joinword');
+				set_wrap_width($join_button_wrap, $join_label);				
+			});
+			
+			$('#page-questions-close').click(function(){
+				$('#page-questions').addClass('off');
+			});
+			
+		});
+	}, extraContext);
+});
+</script>
+
+<div id="template-holder"></div>
+
+</body>
+</html>

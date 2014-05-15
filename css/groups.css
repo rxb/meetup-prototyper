@@ -1,0 +1,307 @@
+/* line 6, ../scss/groups.scss */
+.button-photo {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* line 11, ../scss/groups.scss */
+.chapter-menu {
+  margin-bottom: 0;
+}
+/* line 13, ../scss/groups.scss */
+.chapter-menu li {
+  line-height: 42px;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+/* line 17, ../scss/groups.scss */
+.chapter-menu li a {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* line 24, ../scss/groups.scss */
+#header {
+  background: #fafafa;
+}
+/* line 26, ../scss/groups.scss */
+#header .doc-bounds {
+  padding: 12px 30px;
+}
+/* line 29, ../scss/groups.scss */
+#header #logo {
+  width: 68px;
+  height: 45px;
+}
+
+@media only screen and (max-width: 500px) {
+  /* line 38, ../scss/groups.scss */
+  #header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: 47px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  /* line 45, ../scss/groups.scss */
+  #header #logo {
+    width: 46px;
+    height: 30px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: 8px;
+  }
+  /* line 52, ../scss/groups.scss */
+  #header .doc-bounds {
+    padding: 0 12px;
+    line-height: 47px;
+    vertical-align: middle;
+  }
+
+  /* line 58, ../scss/groups.scss */
+  body {
+    padding-top: 47px;
+  }
+}
+/* line 66, ../scss/groups.scss */
+#groupList {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* line 71, ../scss/groups.scss */
+.follow-button .join, .follow-button .joined {
+  background-image: url(../css/follow_divided.svg);
+  cursor: pointer;
+  height: 38px;
+  width: 34px;
+  margin: -12px 0 -12px -12px;
+  background-position: center center;
+  display: inline-block;
+}
+/* line 81, ../scss/groups.scss */
+.follow-button .joined {
+  margin-top: 0;
+  margin-left: 0;
+  background-image: url(../css/following_divided.svg);
+  -webkit-transform: scale(0) rotate(120deg);
+  -moz-transform: scale(0) rotate(120deg);
+  -ms-transform: scale(0) rotate(120deg);
+  -o-transform: scale(0) rotate(120deg);
+  transform: scale(0) rotate(120deg);
+  -webkit-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -moz-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -o-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+/* line 87, ../scss/groups.scss */
+.follow-button .joined.on {
+  -webkit-transform: scale(1) rotate(0deg);
+  -moz-transform: scale(1) rotate(0deg);
+  -ms-transform: scale(1) rotate(0deg);
+  -o-transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(0deg);
+}
+
+/* line 95, ../scss/groups.scss */
+.fillable, .filled {
+  height: 38px;
+  width: 34px;
+  margin: 0 auto;
+  background-position: center center;
+  display: inline-block;
+}
+
+/* line 102, ../scss/groups.scss */
+.filled {
+  -webkit-transform: scale(0) rotate(120deg);
+  -moz-transform: scale(0) rotate(120deg);
+  -ms-transform: scale(0) rotate(120deg);
+  -o-transform: scale(0) rotate(120deg);
+  transform: scale(0) rotate(120deg);
+  -webkit-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -moz-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -o-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+/* line 106, ../scss/groups.scss */
+.filled.on {
+  -webkit-transform: scale(1) rotate(0deg);
+  -moz-transform: scale(1) rotate(0deg);
+  -ms-transform: scale(1) rotate(0deg);
+  -o-transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(0deg);
+}
+
+/* line 112, ../scss/groups.scss */
+.followable {
+  background-image: url(../css/follow_divided.svg);
+}
+/* line 114, ../scss/groups.scss */
+.followable .filled {
+  background-image: url(../css/following_divided.svg);
+}
+
+/* line 119, ../scss/groups.scss */
+.followlabel {
+  text-transform: uppercase;
+  font-size: 8px;
+  color: #aaa;
+  text-align: center;
+  display: inline-block;
+}
+
+/* line 127, ../scss/groups.scss */
+.group .fix {
+  text-align: center;
+  border-left: 1px solid #eee;
+  padding: 12px 8px;
+  min-width: 56px;
+}
+
+/* line 137, ../scss/groups.scss */
+.diffword .diff1, .diffword .diff2, .diffword del, .diffword ins {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 0;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+/* line 144, ../scss/groups.scss */
+.diffword.show_diff1 .diff1 {
+  max-width: 1em;
+}
+/* line 150, ../scss/groups.scss */
+.diffword.show_diff2 .diff2 {
+  max-width: 1em;
+}
+
+/* line 161, ../scss/groups.scss */
+.join-button-wrap {
+  overflow: hidden;
+  height: 40px;
+  position: relative;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+/* line 166, ../scss/groups.scss */
+.join-button-wrap .button, .join-button-wrap .joinword {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+/* line 171, ../scss/groups.scss */
+.join-button-wrap .button {
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  opacity: 0;
+  margin-bottom: 4px;
+}
+/* line 175, ../scss/groups.scss */
+.join-button-wrap .button.on {
+  opacity: 1;
+}
+/* line 179, ../scss/groups.scss */
+.join-button-wrap .joinword {
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  display: inline-block;
+  opacity: 0;
+  font-weight: bold;
+}
+/* line 184, ../scss/groups.scss */
+.join-button-wrap .joinword.on {
+  opacity: 1;
+}
+
+/* line 195, ../scss/groups.scss */
+#catList li .photo-button {
+  width: 100%;
+  height: 120px;
+  position: relative;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+}
+/* line 202, ../scss/groups.scss */
+#catList li .photo-button-check {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(30%, rgba(22, 24, 27, 0)), color-stop(100%, rgba(22, 24, 27, 0.9)));
+  background: -webkit-linear-gradient(top, rgba(22, 24, 27, 0) 30%, rgba(22, 24, 27, 0.9));
+  background: -moz-linear-gradient(top, rgba(22, 24, 27, 0) 30%, rgba(22, 24, 27, 0.9));
+  background: -o-linear-gradient(top, rgba(22, 24, 27, 0) 30%, rgba(22, 24, 27, 0.9));
+  background: -ms-linear-gradient(top, rgba(22, 24, 27, 0) 30%, rgba(22, 24, 27, 0.9));
+  background: linear-gradient(top, rgba(22, 24, 27, 0) 30%, rgba(22, 24, 27, 0.9));
+}
+/* line 225, ../scss/groups.scss */
+#catList li .photo-button-photo {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* line 237, ../scss/groups.scss */
+#catList li .photo-button-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  font-weight: bold;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 254, ../scss/groups.scss */
+#catList li.on .photo-button-check {
+  border: 8px solid #13a1ff;
+}
+/* line 258, ../scss/groups.scss */
+#catList li.on .photo-button-check:after {
+  background-image: url(../css/check_on.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  content: "";
+  display: block;
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  height: 32px;
+  width: 33px;
+}

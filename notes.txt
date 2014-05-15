@@ -1,48 +1,21 @@
-memberlist
-	search
-	list view
+sign up screen
+	facebook
+	normal
+		name
+		email
+		password
+		age 
+		gender
+		location
 	
-calendar
-	styling
+topic picker
+	include searching reassurance
 
-events
-	comments
-	try tearsheets
-	your rsvp status
-	
-talk
-	interface for post
-	xx like
-	xx timestamp
-	xx reply
-	formatting
-		strip most bbcode
-		break long strings
-		do something about newlines
-	add event comments
-	add photos
-	add plausible member photos
-	add replies
-	
-header
-	collapsible
-	add logos
+follow groups
+	Follow some groups. What seems interesting? Jumpstart your Meetup calendar.
+	Same layout from /find
+	Overlay thing
 
-member mode
-	what does it look like
-	
-dues
-	think about it
-	
-related groups
-	xx down at the bottom
-	
-general
-	collapse column at small size
-	private groups
-	pay groups
-	
-	
-demo
-	set up a few different groups
-	
+verify
+
+calendar with top message

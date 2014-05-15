@@ -179,7 +179,9 @@ Gimme.prototype = {
 				},
 				data: {
 					group_id: self.defaults.group_id,
-					page: self.defaults.page
+					page: self.defaults.page,
+                    limited_events: true,
+                    text_format: 'plain'
 				}
 			};
 		},		
@@ -289,6 +291,8 @@ Gimme.prototype = {
 						else if( typeof n.group_photo !== 'undefined'){
 							n.photo = n.group_photo.photo_link;
 						}
+                        n.description = n.description.replace(/<p>[\s]*<\/p>/g,"");
+                        
 						return n;
 					});
 					return groups;
@@ -296,7 +300,7 @@ Gimme.prototype = {
 				},
 				data: {
 					zip: self.defaults.zip,
-					fields: 'photos',
+					fields: 'photos,next_event,join_info',
 					order: 'members'
 				}
 			};
@@ -308,18 +312,23 @@ Gimme.prototype = {
 				method: '2/groups',
 				parse: function(data){
 					var group = data.results[0];
-					
+                    if( typeof group.group_photo !== 'undefined' ){
+					    group.logo = group.group_photo.photo_link;
+                    }
+                    
 					if( typeof group.photos !== 'undefined' && group.photos.length > 0){
 						group.photo = group.photos[0].photo_link;
 					}
 					else if( typeof group.group_photo !== 'undefined' ){
 						group.photo = group.group_photo.photo_link;
 					}
+                    
+                    
 					return group;
 				},
 				data: {
 					page: 1, 
-					fields: 'photos,sponsors',
+					fields: 'photos,sponsors,join_info,similar_groups',
 					group_id: self.defaults.group_id
 				}
 			};			
@@ -388,7 +397,10 @@ Gimme.prototype = {
 			var gid = data.member_id || self.defaults.member_id;
 			return {
 				method: '2/profile/'+data.group_id+"/"+data.member_id,
-				parse: function(data){					
+				parse: function(data){
+					if( (typeof data.photo !== 'undefined') && (typeof data.photo.photo_link !== 'undefined') ){
+						data.photo = data.photo.photo_link;
+					}					
 					return data;
 				},
 				data: {}
@@ -397,11 +409,13 @@ Gimme.prototype = {
 		
 		categories: function( data, self ){
 			return {
-				method: '2/categories/',
+				method: '2/topic_categories/',
 				parse: function(data){					
 					return data.results;
 				},
-				data: {}
+				data: {
+				    "fields": "best_topics"
+				}
 			};
 		},
 		
