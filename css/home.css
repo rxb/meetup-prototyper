@@ -168,9 +168,13 @@
 /* line 157, ../scss/home.scss */
 #groupheader {
   text-align: center;
+  /*
+  // http://polygon.com
+  -webkit-linear-gradient(left top, #CE84B3 0px, #C80AA2 50%, #000 88%);
+  */
 }
 
-/* line 161, ../scss/home.scss */
+/* line 165, ../scss/home.scss */
 #groupheader-icon {
   width: 100px;
   height: 100px;
@@ -186,15 +190,22 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  border: 4px solid white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  color: #bbb;
+  font-size: 16px;
+  text-align: center;
+  line-height: 100px;
 }
 
-/* line 176, ../scss/home.scss */
+/* line 185, ../scss/home.scss */
 .selected {
   color: #13a1ff;
 }
 
-/* line 180, ../scss/home.scss */
+/* line 189, ../scss/home.scss */
 .tag {
   display: inline-block;
   background: rgba(255, 255, 255, 0.35);
@@ -207,131 +218,162 @@
   font-size: .8em;
   margin-bottom: 12px;
 }
-/* line 187, ../scss/home.scss */
+/* line 196, ../scss/home.scss */
 .tag.blue {
   background: #13a1ff;
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* line 202, ../scss/home.scss */
+#navbar-group {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background: #fafafa;
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 211, ../scss/home.scss */
+#navbar-group, #navbar-group h4 {
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+/* line 214, ../scss/home.scss */
+#navbar-group.extended-visible {
+  background: transparent;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0.6)), color-stop(100%, rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: none;
+}
+/* line 219, ../scss/home.scss */
+#navbar-group.extended-visible h4 {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 500px) {
-  /* line 205, ../scss/home.scss */
+  /* line 237, ../scss/home.scss */
   #groupheader {
     height: 212px;
   }
-  /* line 207, ../scss/home.scss */
-  #groupheader h2 {
+  /* line 239, ../scss/home.scss */
+  #groupheader h1 {
     font-size: 24px;
   }
-  /* line 210, ../scss/home.scss */
+  /* line 242, ../scss/home.scss */
   #groupheader .meta {
     font-size: 13px;
   }
 
-  /* line 214, ../scss/home.scss */
+  /* line 246, ../scss/home.scss */
   #groupheader-icon {
     width: 56px;
     height: 56px;
     margin-top: -56px;
-    font-size: 41px;
     text-align: center;
-    line-height: 1em;
     color: rgba(0, 0, 0, 0.1);
+    line-height: 56px;
   }
 
-  /* line 225, ../scss/home.scss */
+  /* line 257, ../scss/home.scss */
   .block-at-handheld {
     display: block;
     width: 100%;
   }
 
-  /* line 230, ../scss/home.scss */
+  /* line 262, ../scss/home.scss */
   #member-mask {
     height: 192px;
   }
 
-  /* line 235, ../scss/home.scss */
+  /* line 267, ../scss/home.scss */
   .line.linear-at-handheld, .line.linear-at-medium, .line-gutters.linear-at-handheld, .line-gutters.linear-at-medium {
     margin-right: 0;
   }
-  /* line 196, ../scss/home.scss */
+  /* line 228, ../scss/home.scss */
   .line.linear-at-handheld > .unit, .line.linear-at-medium > .unit, .line-gutters.linear-at-handheld > .unit, .line-gutters.linear-at-medium > .unit {
     float: none;
     width: auto;
     padding-right: 0;
   }
 
-  /* line 240, ../scss/home.scss */
+  /* line 272, ../scss/home.scss */
   .hide-at-handheld, .hide-at-medium {
     display: none;
   }
 
-  /* line 245, ../scss/home.scss */
+  /* line 277, ../scss/home.scss */
   .big {
     font-size: 16px;
   }
 
-  /* line 249, ../scss/home.scss */
+  /* line 281, ../scss/home.scss */
   .center-at-handheld, .center-at-medium {
     text-align: center;
   }
 }
 @media only screen and (min-width: 501px) and (max-width: 899px) {
-  /* line 255, ../scss/home.scss */
+  /* line 287, ../scss/home.scss */
   #groupheader {
     height: 212px;
   }
 
-  /* line 258, ../scss/home.scss */
+  /* line 290, ../scss/home.scss */
   #groupheader-icon {
     width: 56px;
     height: 56px;
     margin-top: -56px;
-    font-size: 41px;
     text-align: center;
-    line-height: 1em;
     color: rgba(0, 0, 0, 0.1);
+    line-height: 56px;
   }
 
-  /* line 271, ../scss/home.scss */
+  /* line 303, ../scss/home.scss */
   .line.linear-at-medium, .line-gutters.linear-at-medium {
     margin-right: 0;
   }
-  /* line 196, ../scss/home.scss */
+  /* line 228, ../scss/home.scss */
   .line.linear-at-medium > .unit, .line-gutters.linear-at-medium > .unit {
     float: none;
     width: auto;
     padding-right: 0;
   }
 
-  /* line 276, ../scss/home.scss */
+  /* line 308, ../scss/home.scss */
   .hide-at-medium {
     display: none;
   }
 
-  /* line 280, ../scss/home.scss */
+  /* line 312, ../scss/home.scss */
   .center-at-medium {
     text-align: center;
   }
 }
 @media only screen and (min-width: 900px) {
-  /* line 286, ../scss/home.scss */
+  /* line 318, ../scss/home.scss */
   #groupheader {
     height: 300px;
   }
 
-  /* line 289, ../scss/home.scss */
+  /* line 321, ../scss/home.scss */
   #groupheader-icon {
     width: 96px;
     height: 96px;
     margin-top: -96px;
-    font-size: 81px;
     text-align: center;
-    line-height: 1em;
+    line-height: 96px;
     color: rgba(0, 0, 0, 0.1);
   }
 }
-/* line 303, ../scss/home.scss */
-.photo50, .photo100 {
+/* line 332, ../scss/home.scss */
+.photo25, .photo50, .photo100 {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -341,27 +383,36 @@
   background-position: center center;
 }
 
-/* line 310, ../scss/home.scss */
+/* line 339, ../scss/home.scss */
 .photo50 {
-  height: 50%;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+}
+
+/* line 345, ../scss/home.scss */
+.photo25 {
+  height: 25%;
+  width: 25%;
+  display: inline-block;
 }
 
 /* THIS IS SO BAD */
-/* line 318, ../scss/home.scss */
+/* line 355, ../scss/home.scss */
 .collapse-related {
   display: none;
 }
 
-/* line 322, ../scss/home.scss */
+/* line 359, ../scss/home.scss */
 .groupinfo-collapsed #groupinfo {
   max-height: 0;
 }
-/* line 325, ../scss/home.scss */
+/* line 362, ../scss/home.scss */
 .groupinfo-collapsed .collapse-related {
   display: inline;
 }
 
-/* line 329, ../scss/home.scss */
+/* line 366, ../scss/home.scss */
 #groupinfo {
   overflow: hidden;
   -webkit-transition: all 0.4s;

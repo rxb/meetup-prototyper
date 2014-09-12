@@ -1,0 +1,235 @@
+<html>
+<head>
+	<!-- prototyper requires JS -->
+	<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/ractive/ractive.js"></script>
+	<script type="text/javascript" src="js/helpers_ractive.js"></script>
+	
+	<!-- LATER 
+	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
+	<script type="text/javascript" src="bower_components/handlebars/ractive.js"></script>
+	<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+	<script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+	<script type="text/javascript" src="js/helpers.js"></script>
+	-->
+
+	<script type="text/javascript" src="js/gimme.js"></script>
+	<script type="text/javascript" src="js/extras.js"></script>
+
+	<!-- this project requires JS -->
+	<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	
+	<!-- styles -->
+	<link href="bower_components/sassquatch/css/sassquatch.css" type="text/css" rel="stylesheet" />
+	<link href="css/whitney.css" type="text/css" rel="stylesheet" /> <!-- whitney will get bowerized -->
+	<link href="css/patch.css" type="text/css" rel="stylesheet" />
+	<link href="css/groups.css" type="text/css" rel="stylesheet" />
+	
+	<meta name='viewport' content='content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0' />
+
+</head>
+<body>
+	
+
+
+<script type="text/html" id="main-template">
+
+
+<!-- screen start -->
+<div class="doc-stripe" id="header"><div class="doc-bounds">
+
+	<table>
+		<thead>
+			<th></th>
+			<th>Android</th>
+			<th>iOS</th>
+			<th>Web</th>
+		</thead>
+		<tbody>
+		{{#each components}}
+		<tr>
+			<td>
+				{{name}}
+				{{#desc}}<p class="margin-none small muted">{{desc}}</p>{{/desc}}
+			</td>
+			<td>
+				<div class="android">
+					{{markup}}
+				</div>
+				{{types.android.notes}}
+			</td>
+			<td>
+				<div class="ios">
+					{{markup}}
+				</div>
+				{{types.ios.notes}}
+			</td>
+			<td>
+				<div class="web">
+					{{markup}}
+				</div>
+				{{types.web.notes}}
+			</td>
+		</tr>
+		{{/each}}
+		</tbody>
+	</table>
+
+</div></div>
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var components = [
+	{
+		"name": "Heading 1"
+	},
+	
+	{
+		"name": "Heading 2"
+	},
+	
+	{
+		"name": "Heading 3"
+	},
+	
+	{
+		"name": "Body text"
+	},
+	
+	{
+		"name": "Tiny text"
+	},
+	
+	{
+		"name": "List view"
+	},
+	
+	{
+		"name": "Collection view"
+	},
+	
+	{
+		"name": "Navigation bar"
+	},
+	{
+		"name": "Extended Navigation bar",
+		"desc": "With background options"
+	},
+	
+	{
+		"name": "Tabs"
+	},
+	{
+		"name": "Buttons"
+	},
+	{
+		"name": "Text input",
+		"desc": "With label options"
+	},
+	{
+		"name": "Multiline text input",
+		"desc": "With label options"
+		
+	},
+	{
+		"name": "Select/Picker/Spinner",
+		"desc": "With label options"
+		
+	},
+	{
+		"name": "Checkbox/Switch"
+		
+	},
+	{
+		"name": "Radio"
+	},
+	{
+		"name": "Grouped form",
+		"desc": "With label options"
+	},
+	{
+		"name": "Toast"
+	},
+	{
+		"name": "Alert"
+	},
+	{
+		"name": "Action sheet / Popup menu"
+	},
+	{
+		"name": "Modal"
+	},
+	{
+		"name": "Person avatar"
+	},
+	{
+		"name": "Group avatar"
+	},
+];
+
+
+$(function(){	
+	// kill 300ms delay
+	FastClick.attach(document.body);
+	
+	// lazy load background imgs
+	$.extend($.lazyLoadXT, { edgeY:  900 });
+	
+	/* 
+	* Uncomment the data you want -- it will be available in the template 
+	* Check out the Meetup API docs for a list of fields to use in the template
+	* http://www.meetup.com/meetup_api/docs/
+	*
+	* A few notes:
+	* -- You can specify any field supported by the API
+	* -- You can leave every field unspecified except "gimme" -- something random/fun will be picked for you.
+	*/
+	
+	/* Add your own pre-rendering JS here */
+
+	var shoppingList = [
+		{"gimme": "groups", "page": 80, "zip": 73301},	
+		//{"gimme": "group"},
+		//{"gimme": "open_events"}, 
+		//{"gimme": "dates_with_open_events"}, 
+		//{"gimme": "events", "page": 15}, 
+		//{"gimme": "event"},		
+		//{"gimme": "rsvps"},	
+		//{"gimme": "event_comments"},
+		//{"gimme": "photo_albums"},
+		//{"gimme": "photos"},
+		//{"gimme": "members", "page": 40},
+		//{"gimme": "profile"},
+		//{"gimme": "categories"},
+		//{"gimme": "discussions", "page": 9}
+	];
+	
+	var extraContext = {
+		"components": components
+	}; // anything else to add to the handlebars context?
+	
+	
+	// Let's go!
+	var gme = new Gimme(shoppingList, function(){
+				
+		var ractive = new Ractive( {el: 'body', template: '#main-template', data: gme.context });
+		defaultRenderCompleteActions(); // do standard jquery magicks
+	
+		
+	}, extraContext);
+
+});
+
+
+</script>
+
+<div id="template-holder"></div>
+
+</body>
+</html>

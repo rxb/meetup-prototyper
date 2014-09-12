@@ -69,25 +69,20 @@
 						</li>
 					</ul>
 				</div>
-				<!--
+
+
 				<div class="fix doc-content" style="white-space: nowrap; padding: 6px 12px 0">
-						<span class="button follow-button follow">
-						
-							<span class="join"><span class="joined" ></span></span> <span class="joinword">Follow</span>
-						</span>
-						<a class="button primary fake-feature" style="white-space: nowrap;">Join</a>
-				</div>
-				-->
-				
-				
-				<div class="fix doc-content divided follow" style="white-space: nowrap; padding: 6px 12px 0">
-						<div class="join" data-join_mode="{{join_mode}}" data-join_info='{{json join_info}}' style="display: inline-block; vertical-align: middle;">
-							<div class="joined" ></div>
+				    <div class="button primary" id="follow" style="position: relative; vertical-align: top; padding-right: 34px;">
+						<span class="hideable" id="follow_label">Follow&nbsp;&nbsp;&nbsp;</span>
+						<div class="fillable followable" style="position: absolute; top: 2px; right: 8px;">
+							<div class="filled" id="follow_filled"></div>
 						</div>
-						<div class="join-button-wrap" style="display: inline-block; vertical-align: top;">
-							<div class="joinword on" style="vertical-align: middle; line-height: 40px;">Follow</div> 
-							<div class="button primary" style="white-space: nowrap;">Become a member</div>
-						</div>
+				    </div>
+				    <div class="hideable hid" id="join_wrap">
+					    <div class="button primary">
+					    	Become a member
+					    </div>
+				    </div>	
 				</div>
 				
 			</div>
@@ -268,61 +263,36 @@ $(function(){
 			$('body').append( Handlebars.compile( $('#main-template').html() )( gme.context ) ); // render template
 			defaultRenderCompleteActions(); // do standard jquery magicks
 			
-			function set_wrap_width($wrap, $ref){
-				$wrap.width($ref.outerWidth());
-			}
 			
-			$('.follow').click(function(){
-				var $this = $(this);
-				var $join = $this.find('.join');
-				var $joined = $join.find('.joined');
-				var $join_button_wrap = $join.next();
-				var $join_button = $join_button_wrap.find('.button');
-				var $join_label = $('.joinword');
-				
-				if($this.data("join_mode") == "approval"){
-					console.dir($this.data("join_info"));
-					$('#content-questions').html( Handlebars.compile( $('#questions-template').html() )( {"join_info": $this.data("join_info")} ) );
-					$('#page-questions').removeClass("off");
-					return false;
-				}
-				
-				if($joined.hasClass('on')){
-					$joined.removeClass('on');
-					
-					$join_button.removeClass('on');
-					$joined.one(transitionEnd, function(){
-						$join_label.text('Follow');
-						set_wrap_width($join_button_wrap, $join_label);												
-						$join_label.addClass('on');
-					});
-				}
-				else{
-					$joined.addClass('on');	
-					$join_label.removeClass('on');
-					
-					$joined.one(transitionEnd, function(){
-						$join_label.text('Following');	
-						setTimeout(function(){
-							set_wrap_width($join_button_wrap, $join_button);												
-							$join_button.addClass('on');	
-																
-						}, 200);
-					});	
+			var following = false;
+			var $follow = $('#follow');
+			var $follow_label = $('#follow_label');
+			var $follow_filled = $('#follow_filled');
+			var $join = $('#join_wrap');
 
-				}
+			$('#follow').click(function(){
+			  if(following){
+			    following = false;
+				$follow.removeClass('ghost');
+			    $follow_filled.removeClass('on');
+			    $follow_label.removeClass('hid');
+			    $join.addClass('hid');
+
+
+			  }
+			  else{
+			    following = true;
+			    $follow_filled.addClass('on');
+				$follow.addClass('ghost');
+			    
+			    setTimeout(function(){
+					$follow_label.addClass('hid');
+			        $join.removeClass('hid');
+			    }, 1000);
+			  }
 			});
 			
-			// break out of closure
-			setTimeout(function(){
-				var $join_button_wrap = $('.join-button-wrap');			
-				var $join_label = $('.joinword');
-				set_wrap_width($join_button_wrap, $join_label);				
-			});
-			
-			$('#page-questions-close').click(function(){
-				$('#page-questions').addClass('off');
-			});
+
 			
 		});
 	}, extraContext);

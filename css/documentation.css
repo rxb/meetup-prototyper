@@ -1,61 +1,76 @@
-/* line 4, ../scss/documentation.scss */
-html, body {
-  height: 100%;
-}
+/*
+Error: Undefined mixin 'experimental'.
+        on line 25 of /Users/Richard/Dropbox/prototype-builder/scss/documentation.scss, in `experimental'
+        from line 25 of /Users/Richard/Dropbox/prototype-builder/scss/documentation.scss
 
-/* line 9, ../scss/documentation.scss */
-.line.scrollable {
-  height: 100%;
-}
-/* line 11, ../scss/documentation.scss */
-.line.scrollable > .unit {
-  height: 100%;
-  overflow: auto;
-}
+20: 	@include box-sizing(border-box);
+21: 	margin: 0 0 $spacing;
+22: 	@include border-radius(0);
+23: 	//white-space: pre-wrap;
+24: 	font-size: 10px;
+25: 	@include experimental(tab-size, 2);
+26: 	border: none;
+27: 	background: $C_backgroundNav;
+28: }
+29: 
+30: 
 
-/* line 18, ../scss/documentation.scss */
-pre.prettyprint, code.prettyprint {
-  width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0 0 12px;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
-  border-radius: 0;
-  font-size: 10px;
-  -webkit-tab-size: 2;
-  -moz-tab-size: 2;
-  -ms-tab-size: 2;
-  -o-tab-size: 2;
-  tab-size: 2;
-  border: none;
-  background: #fafafa;
-}
-
-/* line 33, ../scss/documentation.scss */
-.thesassquatch {
-  background-image: url("/css/the_sassquatch.svg");
-  -webkit-background-size: 140px;
-  -moz-background-size: 140px;
-  -o-background-size: 140px;
-  background-size: 140px;
-  background-repeat: no-repeat;
-  background-position: 21px top;
-  position: relative;
-}
-
-/* line 41, ../scss/documentation.scss */
-.title {
-  width: 100%;
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  color: rgba(226, 55, 60, 0.5);
-}
-/* line 47, ../scss/documentation.scss */
-.title h2 {
-  color: #e2373c;
-}
+Backtrace:
+/Users/Richard/Dropbox/prototype-builder/scss/documentation.scss:25:in `experimental'
+/Users/Richard/Dropbox/prototype-builder/scss/documentation.scss:25
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:332:in `block in visit_mixin'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:98:in `block in with_mixin'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:115:in `with_frame'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:98:in `with_mixin'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:330:in `visit_mixin'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:79:in `block in with_base'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:115:in `with_frame'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:79:in `with_base'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:152:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:414:in `block (2 levels) in visit_rule'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:414:in `map'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:414:in `block in visit_rule'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:412:in `visit_rule'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:79:in `block in with_base'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:115:in `with_frame'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/stack.rb:79:in `with_base'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:152:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/base.rb:52:in `map'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:161:in `block in visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:160:in `visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:180:in `visit_root'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:151:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/tree/root_node.rb:20:in `render'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/engine.rb:268:in `render'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:209:in `each'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.1/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/lib/compass/sass_compiler.rb:40:in `compile!'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/lib/compass/commands/update_project.rb:49:in `perform'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/lib/compass/commands/base.rb:18:in `execute'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/lib/compass/commands/project_base.rb:19:in `execute'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/bin/compass:30:in `block in <top (required)>'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/bin/compass:44:in `call'
+/Library/Ruby/Gems/2.0.0/gems/compass-1.0.1/bin/compass:44:in `<top (required)>'
+/usr/local/bin/compass:19:in `load'
+/usr/local/bin/compass:19:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined mixin 'experimental'.\A         on line 25 of /Users/Richard/Dropbox/prototype-builder/scss/documentation.scss, in `experimental'\A         from line 25 of /Users/Richard/Dropbox/prototype-builder/scss/documentation.scss\A \A 20: 	@include box-sizing(border-box);\A 21: 	margin: 0 0 $spacing;\A 22: 	@include border-radius(0);\A 23: 	//white-space: pre-wrap;\A 24: 	font-size: 10px;\A 25: 	@include experimental(tab-size, 2);\A 26: 	border: none;\A 27: 	background: $C_backgroundNav;\A 28: }\A 29: \A 30: "; }

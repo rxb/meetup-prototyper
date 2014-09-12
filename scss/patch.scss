@@ -32,13 +32,18 @@ h1, h2, h3, h4, h5, h6{
     color: $C_textPrimaryInverted;
   }
 }
+
+
 .inverted{
+    /*
 	input, textarea, select{
 		border-color: $C_lineGrayInverted;
-		background: $C_backgroundContentInverted;
+		background: rgba(0,0,0,.1);
 		color: $C_textPrimaryInverted;
 	}
+    */
 }
+
 
 // ------------ DOC STRUCTURE ------------
 .doc-stripe{
@@ -115,6 +120,8 @@ h1, h2, h3, h4, h5, h6{
 	padding-top: 0;
 }
 
+
+
 .doc-content{
     padding-bottom: 0;
     @include microclearfix;
@@ -165,11 +172,12 @@ h1, h2, h3, h4, h5, h6{
 	width: 100%;
 	height: 100%;
 	overflow: auto;
+
+	z-index: 5; 
+	padding-top: 40px; 
 	@include transition(all .15s);
     @include translate3d(0, 0, 0);
     @include backface-visibility(hidden);
-	z-index: 5; 
-	padding-top: 40px; 
 	&.off{
 		@include scale(.9);
         opacity: 0;
@@ -209,7 +217,7 @@ h1, h2, h3, h4, h5, h6{
   background-color: $C_backgroundCollection;
 }
 .bg-black{
-  background-color: #333333;
+  background-color: #2a2a2a;
 }
 .bg-red{
 	background-color: $C_red;
@@ -260,7 +268,7 @@ $has: 6, 5, 4, 3, 2, 1;
 	margin: 0 #{-($spacing)} 0 0;
 	padding: 0;
 	list-style: none;
-	li{
+	> li{
 		vertical-align: top;
 		display: inline-block;
 		width: 50%;
@@ -271,26 +279,33 @@ $has: 6, 5, 4, 3, 2, 1;
 	
 
 	@each $h in $has{
-		&.has#{$h} li{ width: percentage(1/$h); }
+		&.has#{$h} > li{ width: percentage(1/$h); }
 	}
 
 	@include respond-to(medium-screens){
 		@each $h in $has{
-			&.has#{$h}-at-medium li{ width: percentage(1/$h); }
+			&.has#{$h}-at-medium > li{ width: percentage(1/$h); }
 		}
 	}
 	
 	@include respond-to(handheld){
 		@each $h in $has{
-			&.has#{$h}-at-handheld li{ width: percentage(1/$h); }
+			&.has#{$h}-at-handheld > li{ width: percentage(1/$h); }
 		}
 	}
 
+
+    &.no-gutters{
+        margin: 0;
+        > li{
+            padding: 0;
+        }
+    }
 	
 }
 
 // ------------ SQUARES ------------
-$thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
+$thumbs: (20, 30, 40, 50, 60, 80, 120, 160, 240);
 @each $thumb in $thumbs{
 	.thumb-#{$thumb}{
 		$thumbpx: #{$thumb}px;
@@ -306,7 +321,7 @@ $thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
 }
 
 // ------------ CIRCLES ------------
-$thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
+$thumbs: (20, 25, 30, 35, 40, 45, 50, 55, 60, 80, 120, 160, 240);
 @each $thumb in $thumbs{
 	.avatar-#{$thumb}{
 		$thumbpx: #{$thumb}px;
@@ -326,13 +341,43 @@ $thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
 .hscroll-wrap{
 	-webkit-overflow-scrolling: touch;
 	overflow: scroll;
-	margin-left: -($spacing);
-	margin-right: -($spacing);
 	.hscroll{
 		padding-left: $spacing;
 		padding-right: $spacing;
 	}
 }
+.hscroll-wrap-wrap{
+	position: relative;
+	margin-left: -($spacing);
+	margin-right: -($spacing);
+	&:before, &:after{
+		content: '';
+		display: block;
+		position: absolute;
+		height: 100%;
+		width: $spacing;
+		top: 0;
+	}
+	&:before{
+		left: 0;
+		@include background-image(linear-gradient(to right, #fff, transparentize(#ffffff, 1) ));
+	}
+	&:after{
+		right: 0;
+		@include background-image(linear-gradient(to left, #fff, transparentize(#ffffff, 1) ));
+	}
+	.bg-black &{
+		&:before{
+			left: 0;
+			@include background-image(linear-gradient(to right, #2a2a2a, transparentize(#2a2a2a, 1) ));
+		}
+		&:after{
+			right: 0;
+			@include background-image(linear-gradient(to left, #2a2a2a, transparentize(#2a2a2a, 1) ));
+		}
+	}
+}
+
 
 // ------------ FIXFLEX ------------
 .fixflex{
@@ -341,6 +386,9 @@ $thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
 	.fix, .flex{
 		display: table-cell;
 		vertical-align: top;
+        &.vertical-center{
+    		vertical-align: middle;            
+        }
 	}
 	.fix{
 		width: 1%;
@@ -365,6 +413,10 @@ $thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
 	background: $C_facebook;
 }
 
+.block{
+	display: block!important;
+}
+
 
 // ------------ TABS ------------
 .tabs{
@@ -374,7 +426,7 @@ $thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
 	padding: 0;
 	display: block;
 	li{
-		$lineh: 2px;
+		$lineh: 4px;
 		padding: 0;
 		margin: 0 0 0 $spacing;
 		cursor: pointer;
@@ -394,6 +446,7 @@ $thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
 	}
 	&.full{
 		display: table;
+        table-layout: fixed;
 		width: 100%;
 		li{
 			display: table-cell;
@@ -503,6 +556,57 @@ $thumbs: (20, 30, 40, 50, 60, 80, 120, 160);
         text-align: center;
 	}
 }
+
+
+
+
+
+/*
+TOUCHABLE LIST
+*/
+.list{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li{
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid $C_border;
+        &:first-child{
+            border-top: none;
+        };
+    }
+    .list-item{
+        padding: $spacing $spacing 0 0;  
+        &:first-child{
+            padding-left: $spacing;
+        }
+    }
+    a.list-item{
+        color: $C_textSecondary;
+        text-decoration: none;
+    } 
+}
+
+
+
+
+/*
+ALTERNATE BUTTONS
+*/
+
+.button-alt{
+	color: #fff;
+	font-weight: bold;
+	background: $C_blue;
+	padding: 12px;
+	@include border-radius(100px);
+	text-align: center;
+	cursor: pointer;
+	margin-bottom: $spacing;
+	font-size: 18px;
+}
+
 
 
 /* 

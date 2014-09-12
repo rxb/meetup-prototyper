@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<!-- prototyper requires JS -->
@@ -81,7 +80,7 @@
 	</div>
 
 
-	<ul data-js-class="blockList has6 has4-at-medium has2-at-handheld cats" class="" id="cats">
+	<ul class="" id="cats">
 		{{#categories:i}}
 			<li class="clickable">
 				<div class="cat" data-index="{{i}}">
@@ -96,7 +95,7 @@
 					{{/topics}}
 					<li class="topic more" on-click="get_more_topics">+ more</li>
 				</ul>
-				<!-- </li> -->
+			</li>
 		{{/categories}}
 	</ul>	
 	
@@ -176,57 +175,39 @@ $(function(){
 		defaultRenderCompleteActions(); // do standard jquery magicks
 		
 
-		/*
-		
-		TODO: 
-		
-		xx units_per_row is wrong sometimes (esp at widests width)
-		topics should fill drawer_h or drawer_h should match topics (but real-world, because lengths are different)
-			could: 
-				overfill topics
-				hide ones that don't fit into drawer
-				when killing, kill non-picked visible topics
-				fetch tons, who cares, maybe only first time hitting [more]
-		
-		topics shouldn't shoot out from a point, but instead ease in from below their point
-		hitting "more" does weird stuff to count
-		*/
-
-
-		
-
 		// get container size, set unit size
 		var active_cat = -1;
+		var w = $('#cats').width();
+		var units_per_row = 7 // make this dynamic per screen size
+		var unit = w/units_per_row;
+		var drawer_h = unit * 1.5;
 		var $cats = $('#cats > li');
-		var w, drawer_h;
+		$('#cats').css({'position': 'relative'});
+		
 		function layout_cats(){
 			// set positions
-			$('#cats').addClass('js');
-			var unit_w = $cats.first().outerWidth();
-			var unit_h = $cats.first().outerHeight();
-			w = $('#cats').width();
-			var units_per_row = Math.round(w/unit_w);
-			drawer_h = Math.min( ($(window).height() - unit_h), 200 ) ;
 			var active_row = (active_cat) ? Math.floor( active_cat  / units_per_row ) : false;
-						
 			for(var i = 0; i<$cats.length; i++){
 				var $this = $($cats[i]);
 				var $cat = $this.find('.cat');
 				var $topics_wrap = $this.find('.topics');
 				var row = Math.floor( i  / units_per_row );
 				var col = i % units_per_row;
-				
 				var top = ( active_row > -1 && row > active_row ) ? drawer_h : 0 ;
 				var new_css;
 				if(i == active_cat){
 					new_css = { 
-						'transform': 'translate3d(0, '+top+'px, 0) scale(1)'
+						'transform': 'translate3d(0, '+top+'px, 0) scale(1)',
+						'top': (unit * row)+'px',
+						'left': (unit * col)+'px'
 					};
 					$topics_wrap.show();				
 				}
 				else{
 					new_css = { 
-						'transform': 'translate3d(0, '+top+'px, 0) scale(.75)' 
+						'transform': 'translate3d(0, '+top+'px, 0) scale(.75)',
+						'top': (unit * row)+'px',
+						'left': (unit * col)+'px'
 					};	
 					$topics_wrap.hide();				
 				}
@@ -239,13 +220,16 @@ $(function(){
 				
 				// position topics wrappers
 				$topics_wrap.css({
-					'top': (unit_h * (row + 1))+'px',
+					'top': (unit * (row + 1))+'px',
 					'left': 0
 				});
 				layout_topics($topics_wrap);
 			};
+			
+			// set #cats height to rows * units + drawer_h
+			$('#cats').height( Math.ceil($cats.length/units_per_row) * unit + drawer_h );
+			
 		}
-		$('#cats').addClass($('#cats').data('js-class'));
 		layout_cats();
 
 		// expand, collapse
@@ -265,8 +249,14 @@ $(function(){
 			layout_cats();
 		});
 		
-
+		/*
+		
+		always 2 positions
+		
+		
+		*/
 		function layout_topics($topics_wrap){
+			// position each topic in a janky way for now
 			var $topics = $topics_wrap.find('.topic');
 			var topic_h = $topics.first().height();
 			var row_cursor = 0;
@@ -281,16 +271,8 @@ $(function(){
 				}
 				$this_topic.removeClass('animate');
 				$this_topic.css({
-					'transform': 'translate3d('+ row_w  + 'px, '+(row_cursor * (topic_h + topic_offset + 40))+'px, 0)'
+					'transform': 'translate3d('+row_w + 'px, '+(row_cursor * (topic_h + topic_offset))+'px, 0)'
 				});
-				
-				setTimeout(function($this_topic, x, y){
-					$this_topic.addClass('animate');
-					$this_topic.css({
-						'transform': 'translate3d('+x+'px, '+y+'px, 0)'
-					});
-				}($this_topic, row_w, (row_cursor * (topic_h + topic_offset))), 1000);
-				
 				row_w += (this_topic_w + topic_offset);
 			}
 		}
@@ -307,8 +289,6 @@ $(function(){
 			},
 			'get_more_topics': function(event){
 				// can i just do this stuff by reference?
-				
-				// remove unpicked topics
 				var len = ractive.get(event.keypath+".topics.length");
 				for(var i=(len-1); i >= 0; i--){
 					if(! ractive.get(event.keypath+".topics."+i+".selected") ){
@@ -316,21 +296,11 @@ $(function(){
 					}
 				}
 				
-				// relayout remaining topics
-				setTimeout(function(){
-					layout_topics( $(event.node).parent() );					
-				}, 250);
-				
-				
-				// add new topics
-				setTimeout(function(){
-					var these_new_topics = JSON.parse(JSON.stringify(new_topics)); // this is gross 
-					for(var i=0; i < these_new_topics.length; i++){
-						ractive.push(event.keypath+".topics", these_new_topics[i]);
-					}
-					layout_topics( $(event.node).parent() );					
-				}, 500);
-				
+				var these_new_topics = JSON.parse(JSON.stringify(new_topics)); // this is gross 
+				for(var i=0; i < these_new_topics.length; i++){
+					ractive.push(event.keypath+".topics", these_new_topics[i]);
+				}
+				layout_topics( $(event.node).parent() );
 			}
 		});
 		
@@ -338,10 +308,9 @@ $(function(){
 		ractive.observe({
 			'categories[*].topics[*].selected': function(n,o,k, index){
 				if(typeof n == 'undefined'){
-					//console.log('init');
+					console.log('init');
 				}
 				else{
-					console.dir(k);
 					if(n === true){
 						ractive.add('categories.'+index+'.selected_count');
 					}
@@ -354,7 +323,34 @@ $(function(){
 		});
 		
 		
-		
+		/*	
+		$(document).on('click', '.topic', function(){
+			var $this = $(this);
+			if($this.hasClass('more')){
+				
+				// clear unused topics & layout
+				var $topics_wrap = $this.parent();
+				$topics_wrap.find('li:not(.on)').remove();
+				//layout_topics($topics_wrap);
+				
+				// add new topics & layout
+				for(var i=0; i<15; i++){
+					$topics_wrap.append('<li class="topic">Something new</li>');					
+				}
+				$topics_wrap.append('<li class="topic more">+ More</li>');	
+				layout_topics($topics_wrap);
+			}
+			else{
+				if($this.hasClass('on')){
+					$this.removeClass('on');
+				}
+				else{
+					$this.addClass('on');
+				}
+			}
+
+		});
+		*/
 			
 
 	//}, extraContext);

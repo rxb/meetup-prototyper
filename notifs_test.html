@@ -1,0 +1,219 @@
+<html>
+<head>
+	<!-- prototyper requires JS -->
+	<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/ractive/ractive.js"></script>
+	<script type="text/javascript" src="bower_components/moment/moment.js"></script>
+	<script type="text/javascript" src="js/helpers_ractive.js"></script>
+	
+	<!-- LATER 
+	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
+	<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+	<script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+	<script type="text/javascript" src="js/helpers.js"></script>
+	-->
+	
+	<script type="text/javascript" src="js/extras.js"></script>
+	<script type="text/javascript" src="js/gimme.js"></script>
+	
+	<link href="bower_components/sassquatch/css/sassquatch.css" type="text/css" rel="stylesheet" />
+	<link href="css/whitney.css" type="text/css" rel="stylesheet" /> <!-- whitney will get bowerized -->
+	<link href="css/patch.css" type="text/css" rel="stylesheet" />
+	<link href="css/rsvplist.css" type="text/css" rel="stylesheet" />
+	
+	<link rel="stylesheet" type="text/css" href="components/ElegantIcons/style.css" />
+
+	<meta name='viewport' content='content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0' />
+
+</head>
+<body>
+
+
+<script type="text/html" id="main-template">	
+<!-- pages -->
+	
+{{^open}}
+<div class="screen clickable" id="page-lock" style="height: 100%;" on-click="open">
+<div class="doc-stripe inverted" style="background-image: url(css/ios_wallpaper_blur.jpg); background-size: cover; height: 100%; font-family: 'helvetica neue'; color: #fff; font-weight: 100;"><div class="doc-bounds align-center">
+	<div style="font-size: 96px; line-height: 1.1;">{{time}}</div>
+	<div style="font-size: 20px;">{{date}}</div>
+
+	<ul class="list" style="text-align: left; border-width: 1px 0; border-style: solid; border-color: rgba(255,255,255,.4); margin-top: 32px; letter-spacing: normal!important;">
+			<li style="border-top-color: rgba(255,255,255,.4);">
+				<div class="list-item fixflex">
+					<div class="fix">
+						<div style="background-image: url(css/Icon-29pt.png); height: 18px; width: 18px; background-size: cover; border-radius: 2px; margin-right: 8px;"></div>
+					</div>
+					<div class="flex">
+						<div><span style="font-weight: 400;">Meetup</span> <span style="opacity: .3; font-size: 11px;">now</span></div>
+						<p>{{groups_with_events[0].name}} and {{groups_with_events.length - 1}} other Meetup {{(groups_with_events.length - 1 != 1) ? 'groups' : 'group' }} have scheduled new Meetups</p>
+					</div>
+				</div>
+				
+			</li>
+	</ul>
+
+
+	<div style="color: rgba(0,0,0,.6); position: fixed; left: 0; bottom: 40px; width: 100%; font-size: 24px; font-weight: 300;">&gt; Slide to unlock</div>	
+</div></div>
+</div>
+{{/open}}
+
+{{#open}}
+<div class="screen" id="page-app">
+	
+<!-- screen start -->
+<!--	
+<div class="doc-stripe" id="apptabs"><div class="doc-bounds">
+	<ul class="tabs full">
+		<li class="selected">Activity</li>
+		<li class="selected">Calendar</li>
+		<li class="selected">Groups</li>
+		<li class="selected">Messages</li>
+		<li class="selected">Profile</li>
+	</ul>
+</div></div>
+-->
+
+<div class="doc-stripe bg-red inverted"><div class="doc-bounds align-center">
+	<h4>Activity</h4>			
+</div></div>
+
+<div class="doc-stripe bg-gray"><div class="doc-bounds">
+	<h4 style="margin: 0 0 4px;">Your next Meetup</h4>
+	{{#featured_event}}
+	<div class="doc-box">
+		<div class="doc-content" style="background-image: url(http://maps.googleapis.com/maps/api/staticmap?center={{group.group_lat}},{{group.group_lon}}&zoom=17&size=600x300&maptype=roadmap&markers=color:red%7Clabel:M%7C{{group.group_lat}},{{group.group_lon}}); background-size: cover; background-position: center center; height: 100px;"></div>
+		<div class="doc-content">
+			<h4>{{name}}</h4>
+			<p>{{helpers.dateFormat(time, "dddd, MMMM D [at] h:mma")}}</p>
+		</div>
+	</div>
+	{{/featured_event}}
+	
+		
+	<h4 style="margin: 0 0 4px;">{{events_for_member.length}} Notifications</h4>
+	<div class="doc-box">
+	<ul class="list">	
+		
+	{{#events_for_member}}
+		<li class="fixflex" data-match="{{match}}">
+
+			<a class="fix list-item">
+				<div class="thumb-40" style="background-image: url({{img}})"></div>
+			</a>
+			<a class="flex list-item">
+				<p><b>{{group.name}}</b> scheduled <b>{{name}}</b> ({{helpers.dateFormat(time, "MMM D")}}) <span class="muted small">2m</span></p>
+			</a>
+		</li>
+	{{/events_for_member}}
+	
+	{{#notifs}}
+		<li class="fixflex" data-match="{{match}}" style="background: #f7f7f7; opacity: .75">
+
+			<a class="fix list-item">
+				<div class="avatar-40" style="background-image: url({{img}})"></div>
+			</a>
+			<a class="flex list-item">
+				<p>{{{text}}} <span class="muted small">2m</span></p>
+			</a>
+		</li>
+	{{/notifs}}
+	</ul>
+	</div>
+</div></div>
+</div>
+{{/open}}
+</script>
+
+
+
+
+<script type="text/javascript">
+$(function(){	
+	/* 
+	* Uncomment the data you want -- it will be available in the template 
+	* Check out the Meetup API docs for a list of fields to use in the template
+	* http://www.meetup.com/meetup_api/docs/
+	*
+	* A few notes:
+	* -- You can specify any field supported by the API
+	* -- You can leave every field unspecified except "gimme" -- something random/fun will be picked for you.
+	*/
+	
+	/* Add your own pre-rendering JS here */
+	
+	var notifs = [
+		{
+			"img": "http://api.randomuser.me/portraits/med/men/1.jpg",
+			"text": "<b>Brian Lafayette</b> and 3 others liked your comment: &quot;What an awesome Volleyball Meetup, can’t wait to see you all again.&quot;",
+			"time": "1d"
+		},
+		{
+			"img": "http://api.randomuser.me/portraits/med/women/1.jpg",
+			"text": "<b>Kristina Harter</b> uploaded a photo to NYC Hackers Weekly Meetup.",
+			"time": "2d"
+		},
+		{
+			"img": "http://api.randomuser.me/portraits/med/men/2.jpg",
+			"text": "<b>David Wu</b> welcomed you to Bayesian Science Meetup.",
+			"time": "4d"
+		}
+	];
+	
+	var opts = getHashParams();
+	
+	var shoppingList = [
+		//{"gimme": "groups", "page": 5},		
+		//{"gimme": "group"},
+		//{"gimme": "open_events"}, 
+		//{"gimme": "dates_with_open_events"}, 
+		//{"gimme": "events", "page": 15}, 
+		{"gimme": "events_for_member", "page": 4, "member_id": 142034072}, 
+		//{"gimme": "event"},		
+		//{"gimme": "rsvps"},	
+		//{"gimme": "event_comments"},
+		//{"gimme": "photo_albums"},
+		//{"gimme": "photos"},
+		//{"gimme": "members", "page": 15, "key": "yes_members"},
+		//{"gimme": "members", "page": 15, "offset": 1, "key": "no_members"},
+		//{"gimme": "members", "page": 60},
+		//{"gimme": "profile"},
+		//{"gimme": "categories"},
+		//{"gimme": "discussions", "page": 9}
+	];
+ 	var extraContext = $.extend( shoppingList, {"opts": opts, "notifs": notifs, "time": moment().format('h:mm'), "date": moment().format('dddd, MMMM D'), "open": false  } ); // anything else to add to the handlebars context?
+	
+	// Let's go!
+	var gme = new Gimme(shoppingList, function(){
+			// post-fetch data manipulation
+			gme.context.featured_event = gme.context.events_for_member.shift();
+			var seen_group_ids = []
+			gme.context.groups_with_events = $.map(gme.context.events_for_member, function(ev){
+				if(seen_group_ids.indexOf( ev.group.id ) == -1 ){
+					seen_group_ids.push(ev.group.id);
+					return ev.group;					
+				}
+
+			});
+			
+			
+			// render stuff
+			var ractive = new Ractive( {el: 'body', template: '#main-template', data: $.extend(gme.context, extraContext) });	
+			defaultRenderCompleteActions(); // do standard jquery magicks
+			
+			ractive.on({
+				open: function(){
+					ractive.set("open", true);
+				}
+			});
+			
+	}, extraContext);
+});
+</script>
+
+<div id="template-holder"></div>
+<div id="shade" class="shade off" style="display: none;"></div>
+
+</body>
+</html>

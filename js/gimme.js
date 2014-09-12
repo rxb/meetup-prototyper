@@ -170,6 +170,9 @@ Gimme.prototype = {
 			};
 		},
 		
+        
+        
+        
 		// events from a single group
 		events: function( data, self ){
 			return {
@@ -184,7 +187,25 @@ Gimme.prototype = {
                     text_format: 'plain'
 				}
 			};
-		},		
+		},	
+        
+		// events from a single group
+		events_for_member: function( data, self ){
+			return {
+				method: '2/events/',
+				parse: function(data){
+					return data.results;
+				},
+				data: {
+					member_id: self.defaults.member_id,
+					page: self.defaults.page,
+                    limited_events: true,
+                    text_format: 'plain',
+                    "fields": "venue"
+				}
+			};
+		},	
+        	
 		
 		event_comments: function( data, self ){
 			return {
@@ -291,8 +312,8 @@ Gimme.prototype = {
 						else if( typeof n.group_photo !== 'undefined'){
 							n.photo = n.group_photo.photo_link;
 						}
-                        n.description = n.description.replace(/<p>[\s]*<\/p>/g,"");
-                        
+                        n.description = (n.description) ? n.description.replace(/<p>[\s]*<\/p>/g,"") : '';
+                        n.events = [];
 						return n;
 					});
 					return groups;
@@ -376,6 +397,7 @@ Gimme.prototype = {
 					});
 					
 					members = $.map(members, function(n, i){
+                        n.match = n.name.toUpperCase();
 						if( (typeof n.photo !== 'undefined') && (typeof n.photo.photo_link !== 'undefined') ){
 							n.photo = n.photo.photo_link;
 						}

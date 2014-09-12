@@ -1,0 +1,299 @@
+<html>
+<head>
+	<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
+	<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	
+	<script type="text/javascript" src="js/extras.js"></script>
+	<script type="text/javascript" src="js/helpers.js"></script>
+	<script type="text/javascript" src="js/gimme.js"></script>
+	
+	<link href="bower_components/sassquatch/css/sassquatch.css" type="text/css" rel="stylesheet" />
+	<link href="css/whitney.css" type="text/css" rel="stylesheet" /> <!-- whitney will get bowerized -->
+	<link href="css/patch.css" type="text/css" rel="stylesheet" />
+	<link href="css/rsvplist.css" type="text/css" rel="stylesheet" />
+	
+	<link rel="stylesheet" type="text/css" href="components/ElegantIcons/style.css" />
+
+	<meta name='viewport' content='content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0' />
+
+</head>
+<body>
+
+
+<script type="text/html" id="main-template">
+<!-- panel -->
+<div class="panel off" id="panel-rsvp" style="display: none;">
+<div class="doc-bounds--narrow">
+	<div class="doc-box">
+		<ul class="list align-center">
+			<li>
+				<a class="list-item">Yes</a>
+			</li>
+			<li>
+				<a class="list-item">Waiting list</a>
+			</li>
+			<li>
+				<a class="list-item">No</a>
+			</li>
+			<li>
+				<a class="list-item strong" id="action-close-rsvp">Cancel</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</div>
+	
+<!-- pages -->
+<div class="page off inverted" id="page-members">
+
+</div>
+
+
+
+<!-- screen start -->
+<div class="doc-stripe bg-red inverted"><div class="doc-bounds">
+	<div class="fixflex" id="actions-coming">
+		<div class="fix clickable">
+			<div class="icon_close" style="font-size: 26px;"></div>
+		</div>
+		<div class="flex align-center">
+			<h4>Who's coming?</h4>			
+		</div>
+		<div class="fix clickable" id="action-search">
+			<div class="icon_search" style="font-size: 18px;"></div>
+		</div>
+	</div>
+	
+	<div class="fixflex" id="actions-search"  style="display: none;">
+
+		<div class="flex align-center">
+			<input id="member-search" type="search" placeholder="Search members" style="width: 100%; margin: 0;" />
+		</div>
+		<div class="fix clickable" id="action-close-search" style="padding-left: 8px;">
+			Cancel
+		</div>
+	</div>
+	
+</div></div>
+<div class="doc-stripe bg-gray"><div class="doc-bounds">
+	
+
+	
+	<div id="rsvp-list">
+		<div class="regular-list">
+			<h4 style="margin: 0 0 4px;">15 Yes</h4>
+			<div class="doc-box">
+			<ul class="list member-list">
+			{{#yes_members}}
+				<li class="fixflex" data-match="{{match}}">
+					<div class="fix">
+						<a class="list-item">
+							<div class="avatar-40" style="background-image: url({{photo}})"></div>
+						</a>
+					</div>
+					<div class="flex">
+						<a class="list-item">
+							{{name}}
+						</a>
+					</div>
+					<div class="fix vertical-center actions">
+						<a class="list-item change-rsvp icon_check_alt"></a>
+						<a class="list-item change-attendance icon_close_alt2"></a>
+					</div>
+				</li>
+			{{/yes_members}}
+			</ul>
+			</div>
+		
+			<h4 style="margin: 20px 0 4px;">15 No</h4>
+			<div class="doc-box">
+			<ul class="list member-list">
+			{{#no_members}}
+				<li class="fixflex" data-match="{{match}}">
+					<div class="fix">
+						<a class="list-item">
+							<div class="avatar-40" style="background-image: url({{photo}})"></div>
+						</a>
+					</div>
+					<div class="flex">
+						<a class="list-item">
+							{{name}}
+						</a>
+					</div>
+					<div class="fix vertical-center actions">
+						<a class="list-item change-rsvp icon_close_alt2"></a>
+						<a class="list-item change-attendance icon_close_alt2"></a>
+					</div>
+				</li>
+			{{/no_members}}
+			</ul>
+			</div>
+		</div>
+		
+		<div class="search-list" style="display: none;">
+			<div class="doc-box">
+			<ul class="list member-list">
+			{{#members}}
+				<li class="fixflex" data-match="{{match}}">
+					<div class="fix">
+						<a class="list-item">
+							<div class="avatar-40" style="background-image: url({{photo}})"></div>
+						</a>
+					</div>
+					<div class="flex">
+						<a class="list-item">
+							{{name}}
+						</a>
+					</div>
+					<div class="fix vertical-center actions">
+						<a class="list-item change-rsvp icon_close_alt2"></a>
+						<a class="list-item change-attendance icon_close_alt2"></a>
+					</div>
+				</li>
+			{{/members}}
+			</ul>
+			</div>
+		</div>
+		
+	</div>
+	
+
+	
+</div></div>
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+$(function(){	
+	/* 
+	* Uncomment the data you want -- it will be available in the template 
+	* Check out the Meetup API docs for a list of fields to use in the template
+	* http://www.meetup.com/meetup_api/docs/
+	*
+	* A few notes:
+	* -- You can specify any field supported by the API
+	* -- You can leave every field unspecified except "gimme" -- something random/fun will be picked for you.
+	*/
+	
+	/* Add your own pre-rendering JS here */
+	function getHashParams() {
+		var hashParams = {};
+		var e, a = /\+/g,
+			// Regex for replacing addition symbol with a space
+			r = /([^&;=]+)=?([^&;]*)/g,
+			d = function(s) {
+				return decodeURIComponent(s.replace(a, " "));
+			},
+			q = window.location.hash.substring(1);
+
+		while (e = r.exec(q))
+		hashParams[d(e[1])] = d(e[2]);
+
+		return hashParams;
+	}
+	var opts = getHashParams();
+	
+	var shoppingList = [
+		//{"gimme": "groups", "page": 5},		
+		//{"gimme": "group"},
+		//{"gimme": "open_events"}, 
+		//{"gimme": "dates_with_open_events"}, 
+		//{"gimme": "events", "page": 15}, 
+		//{"gimme": "event"},		
+		//{"gimme": "rsvps"},	
+		//{"gimme": "event_comments"},
+		//{"gimme": "photo_albums"},
+		//{"gimme": "photos"},
+		{"gimme": "members", "page": 15, "key": "yes_members"},
+		{"gimme": "members", "page": 15, "offset": 1, "key": "no_members"},
+		{"gimme": "members", "page": 60},
+		//{"gimme": "profile"},
+		//{"gimme": "categories"},
+		//{"gimme": "discussions", "page": 9}
+	];
+	var extraContext = $.extend( shoppingList, {"opts": opts} ); // anything else to add to the handlebars context?
+	
+	// Let's go!
+	var gme = new Gimme(shoppingList, function(){
+		$("#template-holder").load('./js/partials.html', function(){ // load partials
+			$('body').append( Handlebars.compile( $('#main-template').html() )( gme.context ) ); // render template
+			defaultRenderCompleteActions(); // do standard jquery magicks
+			
+			// member search faking
+			function search_members(){
+				var val = $('#member-search').val().toUpperCase();
+				var selector = ($('#member-search').val().length > 0) ? '.member-list > li[data-match^="'+val+'"]' : '.member-list > li';
+				$('.member-list > li').hide();
+				$(selector).show();
+			}
+			$('#member-search').bind('keyup search', search_members);
+			
+			// member search mode
+			$('#action-search').click(function(){
+				$('#actions-search').show();
+				$('#actions-coming').hide();
+				$('.search-list').show();				
+				$('.regular-list').hide();				
+				
+			});
+			$('#action-close-search').click(function(){
+				$('#actions-search').hide();
+				$('#actions-coming').show();
+				$('.search-list').hide();				
+				$('.regular-list').show();	
+				$('#member-search').val('');
+				search_members();		
+			});
+			
+
+			// attendance 
+			$('body').delegate('.change-attendance', 'click', function(){
+				if($(this).data('on')){
+					$(this).data('on', false);
+					$(this).addClass('icon_close_alt2').removeClass('icon_profile');
+				}
+				else{
+					$(this).data('on', true);
+					$(this).removeClass('icon_close_alt2').addClass('icon_profile');
+				}
+				$('#attendance-count').text( $('#attendance-list .icon_profile').length );
+			});
+
+			
+			
+			// rsvp action sheet
+			$('body').delegate('.change-rsvp', 'click', function(){
+				$('#shade').show();
+				$('#panel-rsvp').show();
+				setTimeout(function(){
+					$('#shade').removeClass('off');
+					$('#panel-rsvp').removeClass('off');
+				}, 1);
+			});
+			$('#action-close-rsvp').click(function(){
+				$('#panel-rsvp').addClass('off');
+				$('#panel-rsvp').one(transitionEnd, function(){
+					$('#panel-rsvp').hide();					
+				})
+				
+				$('#shade').addClass('off');
+				$('#shade').one(transitionEnd, function(){
+					$('#shade').hide();					
+				})
+			});
+			
+		});
+	}, extraContext);
+});
+</script>
+
+<div id="template-holder"></div>
+<div id="shade" class="shade off" style="display: none;"></div>
+
+</body>
+</html>

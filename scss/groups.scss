@@ -67,28 +67,6 @@
     @include backface-visibility(hidden);
 }
 
-.follow-button{
-    .join, .joined{
-        //margin: -2px -2px 0 0;
-        background-image: url(../css/follow_divided.svg);
-        cursor: pointer;
-        height: 38px;
-        width: 34px;
-        margin: -12px 0 -12px -12px;
-        background-position: center center;
-        display: inline-block;
-    }
-    .joined{
-        margin-top: 0;
-        margin-left: 0;
-        background-image: url(../css/following_divided.svg);    
-        @include transform(scale(0) rotate(120deg));
-        @include transition(all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55) );
-        &.on{
-             @include transform(scale(1) rotate(0deg));
-        }    
-    }
-}
 
 
 // generic fillable icon
@@ -110,10 +88,19 @@
 
 // specific fillable for follow
 .followable{
-    background-image: url(../css/follow_divided.svg);    
+    background-image: url(../css/follow_divided.svg); 
     .filled{
         background-image: url(../css/following_divided.svg);       
     }
+    
+    .primary &{
+        background-image: url(../css/follow_divided_white.svg); 
+    }
+}
+
+
+.red{
+    color: $C_red;
 }
 
 .followlabel{
@@ -121,16 +108,41 @@
     font-size: 8px;
     color: #aaa;
     text-align: center;
-    display: inline-block;
+    //display: inline-block;
 }
 .group{
     .fix{
         text-align: center;
-        border-left: 1px solid #eee;
+        //border-left: 1px solid #eee;
         padding: 12px 8px;
-        min-width: 56px;
+        min-width: 48px;
     }
 }
+
+
+//hideable 
+.hideable{
+  @include box-sizing(border-box);
+  @include transition(all .4s ease-in-out);
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 20em;
+  vertical-align: top;  
+  &.hid{
+    max-width: 0;
+  }
+}
+
+.button.ghost{
+    &, &:hover{
+        @include transition(all .15s ease-in-out);
+        background: transparent;
+        color: transparent ;
+        @include box-shadow(none);
+    }
+}
+
 
 // diffword label animation
 .diffword{
@@ -187,7 +199,7 @@
     }
 }
 
-
+/*
 #catList{
 	li{
 		$r: 3px;
@@ -271,3 +283,93 @@
 		}
 	}
 }
+*/
+
+// $max-count is the maximum amount of colors you'll want
+// $color-frequency is how intense you want the color change to be. Lower # = more intense changes
+@mixin colors($max-count, $color-frequency){
+  $color: 70/$max-count;
+
+  @for $i from 1 through $max-count {
+    &:nth-child(#{$max-count}n + #{$i}) {
+      background: hsl((($i - 1)*($color / $color-frequency)+180), 90%, 50%);
+    }
+  }
+  
+}
+
+$c: 150px;
+$bc: $c * 5;
+
+.cats{
+    text-align: center;
+    text-justify: inter-word;
+	position: relative;
+    .cat{
+		background: cornflowerblue;
+        @include box-sizing(border-box);
+        vertical-align: top;
+        line-height: $c;
+        height: $c;
+        width: $c;
+		text-align: center;
+		backface-visibility: hidden;
+        @include transition(all .35s cubic-bezier(0.175, 0.885, 0.320, 1.275) , opacity .2s linear );
+        .count{
+            $c: 32px;
+            position: absolute;
+            top: -($c/2);
+            left: 50%;
+            margin-left: -($c/2);
+            background: red;
+            color: #fff;
+            @include border-radius(100%);   
+            line-height: $c;
+            width: $c;
+            height: $c;         
+        }
+    }
+	&.on{
+		.cat{
+            @include scale(.5);
+			opacity: .3;
+			&.on{
+				opacity: 1;
+                color: cornflowerblue;
+			}
+		}
+	}
+}
+
+$t: 30px;
+.cats .topics{
+	line-height: 1em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	.topic{
+		color: cornflowerblue;
+		border: 1px solid cornflowerblue;
+		padding: 0 1em;
+		line-height: $t;
+		@include border-radius($t);
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		white-space: nowrap;
+       
+		&.on{
+			background: cornflowerblue;
+			color: white;
+		}
+        &.animate{
+    	    @include transition(all .35s cubic-bezier(0.175, 0.885, 0.320, 1.275) , opacity .2s linear );           
+        }
+	}
+}
+
+

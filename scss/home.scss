@@ -156,6 +156,10 @@ $avatar-h: 64px;
 
 #groupheader{
 	text-align: center;
+    /*
+    // http://polygon.com
+    -webkit-linear-gradient(left top, #CE84B3 0px, #C80AA2 50%, #000 88%);
+    */
 }
 
 #groupheader-icon{
@@ -170,7 +174,12 @@ $avatar-h: 64px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    border: 4px solid white;
+    border: 1px solid rgba(0,0,0,.05);
+    @include background-clip(padding-box);
+    color: #bbb;
+    font-size: 16px;
+    text-align: center;
+    line-height: $d;
 }
 
 .selected{
@@ -190,6 +199,29 @@ $avatar-h: 64px;
 	}
 }
 
+#navbar-group{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    background: $C_backgroundNav;
+    color: $C_textPrimary;
+    border-bottom: 1px solid $C_lineGray;
+    &, h4{
+        @include transition(all .2s);
+    }
+    &.extended-visible{
+        background: transparent;
+        @include background-image(linear-gradient(transparentize(#000000, .4), transparentize(#000000, 1) ));
+        color: $C_textSecondaryInverted;
+        border-bottom: none;
+        h4{
+            opacity: 0;
+        }
+    }
+}
+
 
 @mixin linearize{
 	margin-right: 0;
@@ -204,7 +236,7 @@ $avatar-h: 64px;
 @include respond-to(handheld){
 	#groupheader{
 		height: 212px;
-		h2{
+		h1{
 			font-size: 24px;
 		}
 		.meta{
@@ -216,10 +248,10 @@ $avatar-h: 64px;
 		width: $d;
 		height: $d;
 		margin-top: -($d);
-		font-size: $d - 15px;
 		text-align: center;
-		line-height: 1em;
 		color: $C_lineGray;
+        line-height: $d;
+        
 	}
 	
 	.block-at-handheld{
@@ -260,10 +292,10 @@ $avatar-h: 64px;
 		width: $d;
 		height: $d;
 		margin-top: -($d);
-		font-size: $d - 15px;
 		text-align: center;
-		line-height: 1em;
 		color: $C_lineGray;
+        line-height: $d;
+        
 		
 	}
 	
@@ -291,16 +323,13 @@ $avatar-h: 64px;
 		width: $d;
 		height: $d;
 		margin-top: -($d);
-		font-size: $d - 15px;
 		text-align: center;
-		line-height: 1em;
+        line-height: $d;
 		color: $C_lineGray;
-		
-		
 	}
 }
 
-.photo50, .photo100{
+.photo25, .photo50, .photo100{
     @include background-size(cover);
     width: 100%;
     height: 100%;
@@ -308,7 +337,15 @@ $avatar-h: 64px;
 }
 
 .photo50{
-    height: 50%;
+    height: 100%;
+    width: 100%;
+        display: inline-block;
+}
+
+.photo25{
+    height: 25%;
+    width: 25%;
+    display: inline-block;
 }
 
 

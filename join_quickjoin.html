@@ -1,22 +1,30 @@
 <html>
 <head>
+	<!-- prototyper requires JS -->
 	<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
-	<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-	<script type="text/javascript" src="bower_components/unveil/jquery.unveil.min.js"></script>
-	<script type="text/javascript" src="bower_components/lazyloadxt/dist/jquery.lazyloadxt.js"></script>
-	<script type="text/javascript" src="bower_components/lazyloadxt/dist/jquery.lazyloadxt.bg.js"></script>
+	<script type="text/javascript" src="bower_components/ractive/ractive.js"></script>
 	
+	<!-- LATER 
+	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
+	<script type="text/javascript" src="bower_components/handlebars/ractive.js"></script>
+	<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+	<script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+	-->
 	<script type="text/javascript" src="js/helpers.js"></script>
 	<script type="text/javascript" src="js/gimme.js"></script>
 	<script type="text/javascript" src="js/extras.js"></script>
+
+	<!-- this project requires JS -->
+	<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="bower_components/lazyloadxt/dist/jquery.lazyloadxt.js"></script>
+	<script type="text/javascript" src="bower_components/lazyloadxt/dist/jquery.lazyloadxt.bg.js"></script>
 	<script type="text/javascript" src="js/fastclick.js"></script>
 	
+	<!-- styles -->
 	<link href="bower_components/sassquatch/css/sassquatch.css" type="text/css" rel="stylesheet" />
 	<link href="css/whitney.css" type="text/css" rel="stylesheet" /> <!-- whitney will get bowerized -->
 	<link href="css/patch.css" type="text/css" rel="stylesheet" />
 	<link href="css/groups.css" type="text/css" rel="stylesheet" />
-	
 	
 	<meta name='viewport' content='content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0' />
 
@@ -38,17 +46,34 @@
 <script type="text/html" id="groupinfo-template">
 		
 	{{#group}}
-
 		<div class="nametag-photo inverted" id="panel-photo" style="background-image: url({{photo}});">
 			<div class="nametag-photo-name">
 				<div class="doc-content align-center">
 					<h2 class="padding-none">{{name}}</h2>
-					<p class="muted">{{numberFormat members}} {{who}}</p>
+					<p class="muted">We're {{numberFormat members}} {{who}}</p>
 				</div>
 			</div>
 		</div>
 	{{/group}}
-		
+	
+	<div id="section-questions" style="display: none;">
+		<div class="doc-content">
+			<h2 class="margin-bottom">Apply to join</h2>
+			
+			{{#group.join_info}}
+				{{#questions}}
+					<p class="margin-minimal">{{question}}</p>
+					<textarea></textarea>
+				{{/questions}}
+			{{/group.join_info}}
+			<div class="align-center">
+				<span class="panel-follow button primary block-at-handheld" data-group_id="{{group.id}}">Finish</span>
+			</div>
+
+		</div>
+	</div>	
+
+	<div id="section-info">
 		<div class="doc-content">
 			<div class="line linear-at-handheld" style="border-bottom: 1px solid #ddd; margin-bottom: 16px; padding-bottom: 8px;">
 				
@@ -67,16 +92,45 @@
 				</div>
 
 				<div class="unit size1of2 align-right">
-					<span class="panel-follow button primary block-at-handheld clickable" data-group_id="{{group.id}}" onclick="">Follow this group</span>
+					{{#compare group.join_mode "open"}}
+						{{#compare group.join_info.questions_req 0}}
+							<!-- open no questions -->
+							<span class="panel-follow button primary block-at-handheld clickable" data-group_id="{{group.id}}" onclick="">Join us</span>
+						{{/compare}}
+						{{#compare group.join_info.questions_req 1}}
+							<!-- open questions -->
+							<span class="panel-answer button primary block-at-handheld clickable" data-group_id="{{group.id}}" onclick="">Join us Q</span>
+						{{/compare}}
+					{{/compare}}
+					
+					<!-- approval questions -->
+					<!-- approval no questions -->
+					
+					{{#compare group.join_mode "approval"}}
+						{{#compare group.join_info.questions_req 0}}
+							<!-- approval no questions -->
+							<span class="panel-follow button primary block-at-handheld clickable" data-group_id="{{group.id}}" onclick="">Apply us</span>
+						{{/compare}}
+						{{#compare group.join_info.questions_req 1}}
+							<!-- approval questions -->
+							<span class="panel-answer button primary block-at-handheld clickable" data-group_id="{{group.id}}" onclick="">Apply us Q</span>
+						{{/compare}}
+					{{/compare}}
+					
+					
 				</div>
 			</div>
+			
+			
+						
+			
 			
 			<div id="content-eventlist"></div>
 			
 			<h4>About us</h4>
 			<p>{{{group.description}}}</p>
 		</div>
-
+	</div>
 </script>
 
 
@@ -92,6 +146,7 @@
 	</div>
 </div>
 
+ 
 
 
 <!-- screen start -->
@@ -113,66 +168,49 @@
 	
 	<div class="fixflex">
 		<div class="flex center-at-handheld">
-			<h1>Follow some groups</h1>
-			<p>What looks interesting? Follow groups so you won't miss out on great Meetups!</p>
+			<h1>What looks interesting?</h1>
+			<p>Join a few Meetup Groups</p>
 		</div>
 		<div class="fix">
 			<a href="" class="button fake-feature hide-at-handheld">Next</a>
 		</div>
 	</div>
 
-	
-
 
     <ul class="blockList has3 has2-at-medium has1-at-handheld divided" id="grouplist">
     	{{#each groups}}
-		
-			<!--
-			{{#compare @index 15}}
-				{{#../../interests}}
-	    		<li>
-		    		<div class="doc-box inverted" style="background: rgb(57, 135, 203);">
-						<div class="doc-content">
-							<p class="margin-minimal">{{numberFormat count}} people near Portland are interested in a</p>
-							<h2>{{name}}</h2>
-							<p>Meetup Group</p>
-						</div>
-						<div class="doc-content">
-							<p>You can start one <i class="arrow_carrot-right" style="font-size: 20px; float: right" /></p>
-						</div>
-					</div>
-				{{/../../interests}}
-			{{/compare}}
-			-->
-			
 			
 	    	<li onclick="" class="clickable" style="-webkit-tap-highlight-color: rgba(0,0,0,0);"><!-- crazy but mobile safari needs blank onclick -->
 	    		<div class="doc-box group" data-group="{{json .}}">
 	    			<div class="nametag-photo" data-bg="{{photo}}" style="/* background-image: url({{photo}}); */"><div class="nametag-photo-name">
 	    				<div class="doc-content inverted">
+							<span style="opacity: .75; font-size: 10px; line-height: 12px;">join:{{join_mode}} photoreq:{{join_info.photo_req}} questionreq:{{join_info.questions_req}} introreq:{{join_info.intro_req}} questioncount:{{join_info.questions.length}}</span>
 	    					<h3 class="margin-minimal">{{name}}</h3>
 	    				</div>
 	    			</div></div>
 	    			<div class="">
 						<div class="fixflex">
-							<div class="flex small doc-content" style="position: relative;">
-		    					<p><strong style="white-space: nowrap;">{{numberFormat members}} {{truncateMean who 19}}</strong><br />
-								{{#next_event}}Next Meetup {{dateRelative time}}{{/next_event}}&nbsp;</p>
+							<div class="flex doc-content small" style="position: relative;">
+		    					<p><strong>{{numberFormat members}} {{truncateMean who 18}}</strong></p>
 							</div>
 							<div class="fix doc-content clickable J_follow" style="vertical-align: top; border-top: none" id="follow-{{id}}" onclick="">
 								<div class="fillable followable">
 									<div class="filled"></div>
 								</div>
-								<div class="followlabel diffword" data-diffword="Following">Follow</div>
+								<!--
+								<div class="followlabel">
+									<div class="diffword" data-diffword="Member">Join us</div>
+								</div>
+								-->
 							</div>
 						</div>
 	    			</div>
 	    		</div>
 	    	<!-- no </li> tag to avoid whitespace -->
-	{{/each}}
+			
+		{{/each}}
 	
-	
-</ul>
+	</ul>
 </div></div>
 
 
@@ -205,7 +243,7 @@ $(function(){
 	/* Add your own pre-rendering JS here */
 	
 	var shoppingList = [
-		{"gimme": "groups", "page": 80, "zip": 97034},	
+		{"gimme": "groups", "page": 80, "zip": 73301},	
 		//{"gimme": "group"},
 		//{"gimme": "open_events"}, 
 		//{"gimme": "dates_with_open_events"}, 
@@ -300,6 +338,7 @@ $(function(){
 					renderEvents();
 					
 				});
+				
 
 				return false;
 			});
@@ -311,16 +350,29 @@ $(function(){
 				return false;
 			});
 
-
-			// TODO: Check for current followed / nonfollowed state of group
+			
 			$(document).on('click', '.panel-follow', function(){
 				var $this = $(this);
+				
 				closePanel();	
 				setTimeout(function(){
 					toggleFollow($('#follow-'+$this.data("group_id")))					
 				}, 300);
+
 				return false;		
+				
 			});
+			
+			$(document).on('click', '.panel-answer', function(){
+				var $this = $(this);
+				
+				$('#section-info').hide();
+				$('#section-questions').show();
+				
+				return false;		
+				
+			});
+			
 			
 			// click outside of popup panel, close the popup panel
 			$(document).click(function (e){

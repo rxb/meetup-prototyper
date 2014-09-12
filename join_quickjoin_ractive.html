@@ -1,0 +1,455 @@
+<html>
+<head>
+	<!-- prototyper requires JS -->
+	<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/ractive/ractive.js"></script>
+	<script type="text/javascript" src="js/helpers_ractive.js"></script>
+	
+	<!-- LATER 
+	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
+	<script type="text/javascript" src="bower_components/handlebars/ractive.js"></script>
+	<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+	<script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+	<script type="text/javascript" src="js/helpers.js"></script>
+	-->
+
+	<script type="text/javascript" src="js/gimme.js"></script>
+	<script type="text/javascript" src="js/extras.js"></script>
+
+	<!-- this project requires JS -->
+	<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="bower_components/lazyloadxt/dist/jquery.lazyloadxt.js"></script>
+	<script type="text/javascript" src="bower_components/lazyloadxt/dist/jquery.lazyloadxt.bg.js"></script>
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	
+	<!-- styles -->
+	<link href="bower_components/sassquatch/css/sassquatch.css" type="text/css" rel="stylesheet" />
+	<link href="css/whitney.css" type="text/css" rel="stylesheet" /> <!-- whitney will get bowerized -->
+	<link href="css/patch.css" type="text/css" rel="stylesheet" />
+	<link href="css/groups.css" type="text/css" rel="stylesheet" />
+	<link href="components/ElegantIcons/style.css" type="text/css" rel="stylesheet" />
+
+	<meta name='viewport' content='content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0' />
+
+</head>
+<body>
+	
+<!--
+
+* add photo prompt
+* add dues prompt
+* check on mobile web
+* what happens when you join and rsvp
+* what happens when you reg and join and rsvp
+* what about fixed positioning and forms on mobile web
+* what about when you're intercepted for some other reason with commenting or something
+	
+	
+-->	
+
+
+<script type="text/html" id="main-template">
+<!-- pages -->
+<div class="shade off" id="shade" style="display: none;"></div>
+
+<div class="panel off" id="panel-groupinfo" style="display: none;" onclick="">
+	<div class="doc-bounds--medium">
+		<div id="panel-groupinfo-close" class="clickable nobreak inverted" style="position: absolute; left: 50%; top: 16px; z-index: 2; font-size: 32px; width: 44px; text-align: center; margin-left: -20px;"><img src="css/close.svg"  /></div>
+		<div class="doc-box" style="overflow:auto; height: calc(100% - 60px); -webkit-overflow-scrolling: touch;" id="content-groupinfo">
+			
+			{{#selectedGroup}}
+				<div class="nametag-photo inverted" id="panel-photo" style="background-image: url({{photo}});">
+					<div class="nametag-photo-name">
+						<div class="doc-content align-center">
+							
+							<h2 class="padding-none">{{name}}</h2>
+							<p class="muted">We're {{helpers.numberFormat(members)}} {{who}}</p>
+						</div>
+					</div>
+				</div>
+			
+			{{#relationship == RELATIONSHIP.PENDING}}
+					<div class="doc-content align-center">
+						<h2 class="padding-bottom">Nice!</h2>
+						<p>Your membership is pending. You'll be notified by the organizer.</p>
+						<span on-click="closePanel" class="button primary block-at-handheld" data-group_id="{{group.id}}">Find more awesome groups</span>
+
+					</div>
+			{{/relationship}}
+			
+			
+			{{#relationship == RELATIONSHIP.INTERESTED}}
+				<div id="section-questions">
+					<div class="doc-content">
+						<div style="border-bottom: 1px solid #ddd; margin-bottom: 16px;">
+							{{#join_mode == "approval"}}
+								<h2>Apply to join</h2>
+								<p>This group requires new people to apply to become a member.</p>
+							{{/join_mode}}
+						
+							{{#join_mode == "open"}}
+								<h2>Introduce yourself</h2>
+								<p>This group requires new people to answer a few questions.</p>
+							{{/join_mode}}
+						</div>
+						{{#join_info}}
+							{{#questions}}
+								<p class="margin-minimal">{{question}}</p>
+								<textarea></textarea>
+							{{/questions}}
+						{{/join_info}}
+						<div class="align-center">
+							<span on-click="completeJoin" class="button primary block-at-handheld" data-group_id="{{group.id}}">Finish</span>
+						</div>
+
+					</div>
+				</div>
+			{{/relationship}}	
+			
+			{{#relationship == RELATIONSHIP.MEMBER || !relationship }}
+			<div id="section-info">
+				<div class="doc-content">
+					<div class="line linear-at-handheld" style="border-bottom: 1px solid #ddd; margin-bottom: 16px; padding-bottom: 8px;">
+				
+						<div class="unit size1of2 hide-at-handheld">
+							{{#organizer}}
+							<div class="figureset">
+								<div class="figureset-figure">
+									<div class="avatar avatar-60 clickable" style="background-image:  url('{{photo}}'), url('http://api.randomuser.me/0.3/portraits/women/1.jpg'); margin-top: -6px; margin-bottom: 0;"></div>
+								</div>
+								<div class="figureset-description">
+									Organized by: 
+									<h5>{{name}}</h5>
+								</div>
+							</div>
+							{{/organizer}}
+						</div>
+
+						<div class="unit size1of2 align-right">
+							{{#join_mode == "open"}}
+								<span on-click="attemptJoin" class="button primary block-at-handheld clickable" onclick="">Join us</span>
+							{{/join_mode}}
+					
+							{{#join_mode == "approval"}}
+								<span on-click="attemptJoin" class="button primary block-at-handheld clickable" onclick="">Apply to join</span>
+							{{/join_mode}}
+						</div>
+						
+					</div>
+			
+			
+					<div id="content-eventlist">
+						{{#if events}}
+							<h4>We have Meetups like&hellip;</h4>
+						{{/if}}
+						<ul>
+						{{#each events}}
+							<li>{{name}}</li>
+						{{/each}}
+						</ul>
+					</div>
+			
+					<p>{{{description}}}</p>
+				</div>
+
+			</div>
+			{{/relationship}}
+			{{/selectedGroup}}
+			
+		</div>
+	</div>
+</div>
+
+ 
+
+
+<!-- screen start -->
+<div class="doc-stripe" id="header"><div class="doc-bounds">
+	<div class="line">	
+		<div class="unit size1of2">
+			<img src="https://secure.meetup.com/img/8308650022681532654/header/logo-2x.png" id="logo" />
+		</div>
+
+		<div class="unit size1of2 align-right">
+			<a class="display-none inlineblock-at-handheld bold fake-feature" style="border-left: 1px solid #ddd; padding-left: 12px;">Next &raquo;</a>
+		</div>
+
+	</div>
+</div></div>
+
+
+<div class="doc-stripe bg-gray"><div class="doc-bounds">
+	
+	<div class="fixflex">
+		<div class="flex center-at-handheld">
+			<h1>Pick a few Meetup Groups</h1>
+			<p>What looks interesting? Join and don't miss out.</p>
+		</div>
+		<div class="fix">
+			<a href="" class="button fake-feature hide-at-handheld">Next</a>
+		</div>
+	</div>
+
+    <ul class="blockList has3 has2-at-medium has1-at-handheld divided" id="grouplist">
+    	{{#each groups}}
+			
+	    	<li on-click="showPanel" onclick="" class="clickable" style="-webkit-tap-highlight-color: rgba(0,0,0,0);"><!-- crazy but mobile safari needs blank onclick -->
+	    		<div class="doc-box group">
+	    			<div class="nametag-photo" data-bg="{{photo}}" style="/* background-image: url({{photo}}); */"><div class="nametag-photo-name">
+						<div class="fixflex inverted">
+							<div class="flex doc-content">
+								<h3 class="margin-none padding-none">{{name}}</h3>
+		    					<p class="small">{{helpers.numberFormat(members)}} {{helpers.truncateMean( who, 16)}}</p>
+							</div>
+							<div on-click="{{ relationship == RELATIONSHIP.MEMBER ? "unJoin" : "attemptJoin" }}" class="fix doc-content clickable" style="vertical-align: bottom; border-top: none; font-size: 32px;" id="follow-{{id}}" onclick="" >
+								<div class="margin-minimal">
+									{{#relationship == RELATIONSHIP.MEMBER}}
+										<i class="icon_check_alt red" ></i>
+									{{/relationship}}
+							
+									{{#relationship == RELATIONSHIP.INTERESTED}}
+										<i class="icon_check_alt2 red" ></i>
+									{{/relationship}}
+									
+									{{#relationship == RELATIONSHIP.PENDING}}
+										<span class="small muted">Pending</span>
+										<i class="icon_clock_alt red"></i>
+									{{/relationship}}
+							
+									{{^relationship}}
+										<i class="icon_plus_alt2" ></i>
+									{{/relationship}}
+								
+
+								</div>
+							</div>
+						</div>
+	    			</div></div>
+	    		</div>
+	    	<!-- no </li> tag to avoid whitespace -->
+			
+		{{/each}}
+	
+	</ul>
+</div></div>
+
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+
+$(function(){	
+	// kill 300ms delay
+	FastClick.attach(document.body);
+	
+	// lazy load background imgs
+	$.extend($.lazyLoadXT, { edgeY:  900 });
+	
+	/* 
+	* Uncomment the data you want -- it will be available in the template 
+	* Check out the Meetup API docs for a list of fields to use in the template
+	* http://www.meetup.com/meetup_api/docs/
+	*
+	* A few notes:
+	* -- You can specify any field supported by the API
+	* -- You can leave every field unspecified except "gimme" -- something random/fun will be picked for you.
+	*/
+	
+	/* Add your own pre-rendering JS here */
+	var RELATIONSHIP = {
+		"INTERESTED": 1,
+		"MEMBER": 2,
+		"PENDING": 3
+	};
+	
+	
+	var shoppingList = [
+		{"gimme": "groups", "page": 80, "zip": 97201},	
+		//{"gimme": "group"},
+		//{"gimme": "open_events"}, 
+		//{"gimme": "dates_with_open_events"}, 
+		//{"gimme": "events", "page": 15}, 
+		//{"gimme": "event"},		
+		//{"gimme": "rsvps"},	
+		//{"gimme": "event_comments"},
+		//{"gimme": "photo_albums"},
+		//{"gimme": "photos"},
+		//{"gimme": "members", "page": 40},
+		//{"gimme": "profile"},
+		//{"gimme": "categories"},
+		//{"gimme": "discussions", "page": 9}
+	];
+	
+	var extraContext = {
+		"selectedGroup" : {},
+		"RELATIONSHIP" : RELATIONSHIP
+	}; // anything else to add to the handlebars context?
+	
+	
+	// Let's go!
+	var gme = new Gimme(shoppingList, function(){
+		
+		
+		var ractive = new Ractive( {el: 'body', template: '#main-template', magic: true, data: $.extend(gme.context, extraContext) });
+			
+			defaultRenderCompleteActions(); // do standard jquery magicks
+			$('.nametag-photo').lazyLoadXT();
+			
+			
+			ractive.on({
+
+				attemptJoin: function ( event ) {
+					event.original.stopPropagation();
+					console.log(event.context.name);	
+					
+					// if questions exist and are required
+					if( !event.context.relationship || event.context.relationship == RELATIONSHIP.INTERESTED ){
+						
+						if( event.context.join_info.questions_req == 1 && event.context.join_info.questions.length > 0 ){
+							// advance to RELATIONSHIP.INTERESTED
+							ractive.set(event.keypath+".relationship", RELATIONSHIP.INTERESTED);
+						
+							// if groupInfo isn't open, open it 
+							showPanel(event.context);
+						}
+						else{
+							// advance to RELATIONSHIP.MEMBER
+							ractive.set(event.keypath+".relationship", RELATIONSHIP.MEMBER);
+							ractive.set(event.keypath+".members", event.context.members + 1 );	
+							console.log("attempt join close: "+event.context.name);	
+							closePanel();
+						}
+						
+					}
+					else{
+						
+						showPanel(event.context);
+						
+					}
+					
+
+					
+				},
+				
+				completeJoin: function ( event ){
+				
+					event.original.stopPropagation();
+					
+					if(event.context.join_mode == "approval"){
+						// advance to RELATIONSHIP.PENDING
+						ractive.set(event.keypath+".relationship", RELATIONSHIP.PENDING);
+					}
+					else{
+						// advance to RELATIONSHIP.MEMBER
+						ractive.set(event.keypath+".relationship", RELATIONSHIP.MEMBER);
+						ractive.set(event.keypath+".members", event.context.members + 1 );	
+						closePanel();					
+					}
+					
+				},
+				
+				unJoin: function( event ){
+					event.original.stopPropagation();
+					if(event.context.relationship == RELATIONSHIP.MEMBER){
+						ractive.set(event.keypath+".members", event.context.members - 1 );
+					}
+					ractive.set(event.keypath+".relationship", 0);
+				},
+				
+				showPanel: function( event ){
+					event.original.stopPropagation();
+					showPanel(event.context);
+				},
+				
+				closePanel: function( event ){
+					event.original.stopPropagation();
+					closePanel();
+				}
+				
+			});
+			
+			
+			// click outside of popup panel, close the popup panel
+			$(document).click(function (e){
+				if( $("#panel-groupinfo").hasClass("off") ){
+					// already closed
+					return true;
+				}
+
+			    var container = $("#panel-groupinfo .doc-box");
+			    if (!container.is(e.target) && container.has(e.target).length === 0) {
+					closePanel();
+			    }
+			});
+			
+			function showPanel(group){
+				
+				// which group?
+				gme.context.selectedGroup = group
+									
+				// fetch more data and add to model when available
+				if(typeof group.events == undefined){
+					var shoppingList = [
+						{"gimme": "events", "page": 4, "group_id": event.context.id}
+					];
+			
+					var group_gme = new Gimme(shoppingList, function(){
+						var usedNames = [], uniqueEvents = [];
+						$.each(group_gme.context.events, function(i, event){
+							if($.inArray(event.name, usedNames) === -1){
+								usedNames.push(event.name);
+								uniqueEvents.push(event);
+							}
+						});
+						ractive.set('selectedGroup.events', uniqueEvents);
+					});
+				}
+				
+				// pop up modal
+				$('#shade, #panel-groupinfo').show();
+				setTimeout(function(){
+					$('#content-groupinfo').scrollTop(0);
+					$('#shade, #panel-groupinfo').removeClass('off');						
+				}, 0);
+
+			}
+			
+			function closePanel(){
+				if( $("#panel-groupinfo").hasClass("off") ){
+					// already closed
+					return true;
+				}
+				
+				
+				$('#panel-groupinfo').addClass('off');
+				$('#panel-groupinfo').one(transitionEnd, function(){
+					$(this).css({'display':'none'});
+				});
+				
+				$('#shade').addClass('off');
+				$('#shade').one(transitionEnd, function(){
+					$(this).css({'display':'none'});
+				});
+			}
+			
+			
+			
+
+			
+	});
+});
+
+
+
+
+</script>
+
+<div id="template-holder"></div>
+
+</body>
+</html>
