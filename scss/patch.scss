@@ -1,8 +1,13 @@
-// STUFF THAT PROBABLY SHOULD BE BE INCORPORATED IN SASSQUATCH
+// PATCH
+// If something isn't page-specific and should probably be included in sassquatch, put it here.
+// This includes sassquatch itself, then patches it up to work the way we want it to for reals.
+
+@import '../bower_components/sassquatch/sass/sassquatch';
 
 @import 'variables';
-@import 'compass/css3';
+@import '../bower_components/bourbon/dist/bourbon';
 @import '../bower_components/meetup-swatches/sass/colors';
+
 
 
 // ------------ MIXINS ------------
@@ -143,7 +148,7 @@ h1, h2, h3, h4, h5, h6{
 	@include transition(all .3s);
 	z-index: 5;
 	&.off{
-		@include translate(0, 100%);
+		@include transform(translate(0, 100%));
 	}
 	.page-header{
 		background: rgba(255,255,255,.1);
@@ -176,10 +181,10 @@ h1, h2, h3, h4, h5, h6{
 	z-index: 5; 
 	padding-top: 40px; 
 	@include transition(all .15s);
-    @include translate3d(0, 0, 0);
+    @include transform(translate(0, 0, 0));
     @include backface-visibility(hidden);
 	&.off{
-		@include scale(.9);
+		@include transform(scale(.9));
         opacity: 0;
 	}
     
@@ -199,7 +204,7 @@ h1, h2, h3, h4, h5, h6{
     background: rgba(0,0,0,.7);
     opacity: 1;
     @include transition(all .15s);
-    @include translate(0, 0);
+    @include transform(translate(0, 0));
     z-index: 3;
     &.off{
         opacity: .01; 
@@ -360,7 +365,8 @@ $thumbs: (20, 25, 30, 35, 40, 45, 50, 55, 60, 80, 120, 160, 240);
 	}
 	&:before{
 		left: 0;
-		@include background-image(linear-gradient(to right, #fff, transparentize(#ffffff, 1) ));
+		//@include background-image(linear-gradient(to right, #fff, transparentize(#ffffff, 1) ));
+        @include background-image(linear-gradient(to right, #fff, transparentize(#ffffff, 1) ));
 	}
 	&:after{
 		right: 0;

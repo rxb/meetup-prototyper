@@ -6,9 +6,10 @@
 		"**/*."
 	],
 	"dependencies": {
+        "bourbon": null,
 		"sassquatch": null,
-		"jquery": "2.0.3",
-		"moment": "2.4.0",
+		"jquery": null,
+		"moment": null,
         "ractive": null,
         "jquery-waypoints": null
 	}

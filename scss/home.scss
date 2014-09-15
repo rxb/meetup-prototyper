@@ -1,5 +1,6 @@
-@import 'compass/css3';
 @import 'variables';
+@import '../bower_components/bourbon/dist/bourbon';
+@import '../bower_components/meetup-swatches/sass/colors';
 
 
 $avatar-h: 64px;
@@ -51,7 +52,7 @@ $avatar-h: 64px;
 		//opacity: 1;
 		&:hover{
 			opacity: .8;
-			@include scale(.95);
+			@include transform(scale(.95));
 		}
 		&.count{
 			text-indent: 0;
@@ -175,7 +176,7 @@ $avatar-h: 64px;
     background-repeat: no-repeat;
     background-position: center center;
     border: 1px solid rgba(0,0,0,.05);
-    @include background-clip(padding-box);
+    background-clip: padding-box;
     color: #bbb;
     font-size: 16px;
     text-align: center;
