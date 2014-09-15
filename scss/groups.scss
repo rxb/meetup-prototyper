@@ -306,15 +306,19 @@ $bc: $c * 5;
     text-justify: inter-word;
 	position: relative;
     .cat{
-		background: cornflowerblue;
+		//background: cornflowerblue;
         @include box-sizing(border-box);
         vertical-align: top;
-        line-height: $c;
-        height: $c;
-        width: $c;
+        line-height: $c*.75;
+        height: $c*.75;
+        //width: $c;
 		text-align: center;
 		backface-visibility: hidden;
-        @include transition(all .35s cubic-bezier(0.175, 0.885, 0.320, 1.275) , opacity .2s linear );
+       	background: blue;
+        @include transition(background 0s linear, transform .2s  );
+		&.on{
+			background: white;
+		}
         .count{
             $c: 32px;
             position: absolute;
@@ -329,13 +333,19 @@ $bc: $c * 5;
             height: $c;         
         }
     }
-	&.on{
+}
+
+@include respond-to(handheld){
+	.cats{
 		.cat{
-            @include scale(.5);
-			opacity: .3;
-			&.on{
-				opacity: 1;
-                color: cornflowerblue;
+			width: 100%;
+			height: auto;
+			line-height: 3em;
+		}
+		.topics{
+			.topic{
+				font-size: 12px;
+				max-width: 10em;
 			}
 		}
 	}
@@ -361,14 +371,14 @@ $t: 30px;
 		top: 0;
 		left: 0;
 		white-space: nowrap;
-       
+        background: white;
+		text-overflow: ellipsis;
+		overflow: hidden;
+        @include transition(all .2s, opacity 0s, background 0s, color 0s);    
 		&.on{
 			background: cornflowerblue;
 			color: white;
 		}
-        &.animate{
-    	    @include transition(all .35s cubic-bezier(0.175, 0.885, 0.320, 1.275) , opacity .2s linear );           
-        }
 	}
 }
 

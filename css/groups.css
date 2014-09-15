@@ -64,10 +64,8 @@
 }
 /* line 66, ../scss/groups.scss */
 #groupList {
-  -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -82,22 +80,20 @@
 
 /* line 80, ../scss/groups.scss */
 .filled {
-  -webkit-transform: scale(0) rotate(120deg);
   -moz-transform: scale(0) rotate(120deg);
   -ms-transform: scale(0) rotate(120deg);
-  -o-transform: scale(0) rotate(120deg);
+  -webkit-transform: scale(0) rotate(120deg);
   transform: scale(0) rotate(120deg);
-  -webkit-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   -moz-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   -o-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 /* line 84, ../scss/groups.scss */
 .filled.on {
-  -webkit-transform: scale(1) rotate(0deg);
   -moz-transform: scale(1) rotate(0deg);
   -ms-transform: scale(1) rotate(0deg);
-  -o-transform: scale(1) rotate(0deg);
+  -webkit-transform: scale(1) rotate(0deg);
   transform: scale(1) rotate(0deg);
 }
 
@@ -136,12 +132,12 @@
 
 /* line 124, ../scss/groups.scss */
 .hideable {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   display: inline-block;
   white-space: nowrap;
@@ -156,14 +152,14 @@
 
 /* line 138, ../scss/groups.scss */
 .button.ghost, .button.ghost:hover {
-  -webkit-transition: all 0.15s ease-in-out;
   -moz-transition: all 0.15s ease-in-out;
   -o-transition: all 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
   background: transparent;
   color: transparent;
-  -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   box-shadow: none;
 }
 
@@ -172,9 +168,9 @@
   display: inline-block;
   overflow: hidden;
   max-width: 0;
-  -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
   -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
 /* line 156, ../scss/groups.scss */
@@ -191,9 +187,9 @@
   overflow: hidden;
   height: 40px;
   position: relative;
-  -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 /* line 178, ../scss/groups.scss */
@@ -204,9 +200,9 @@
 }
 /* line 183, ../scss/groups.scss */
 .join-button-wrap .button {
-  -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   opacity: 0;
   margin-bottom: 4px;
@@ -217,9 +213,9 @@
 }
 /* line 191, ../scss/groups.scss */
 .join-button-wrap .joinword {
-  -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   display: inline-block;
   opacity: 0;
@@ -323,22 +319,25 @@
 }
 /* line 308, ../scss/groups.scss */
 .cats .cat {
-  background: cornflowerblue;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: top;
-  line-height: 150px;
-  height: 150px;
-  width: 150px;
+  line-height: 112.5px;
+  height: 112.5px;
   text-align: center;
   backface-visibility: hidden;
-  -webkit-transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s linear;
-  -moz-transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s linear;
-  -o-transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s linear;
-  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s linear;
+  background: blue;
+  -moz-transition: background 0s linear, -moz-transform 0.2s;
+  -o-transition: background 0s linear, -o-transform 0.2s;
+  -webkit-transition: background 0s linear, -webkit-transform 0.2s;
+  transition: background 0s linear, transform 0.2s;
 }
-/* line 318, ../scss/groups.scss */
+/* line 319, ../scss/groups.scss */
+.cats .cat.on {
+  background: white;
+}
+/* line 322, ../scss/groups.scss */
 .cats .cat .count {
   position: absolute;
   top: -16px;
@@ -346,31 +345,28 @@
   margin-left: -16px;
   background: red;
   color: #fff;
-  -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
-  -ms-border-radius: 100%;
-  -o-border-radius: 100%;
+  -webkit-border-radius: 100%;
   border-radius: 100%;
   line-height: 32px;
   width: 32px;
   height: 32px;
 }
-/* line 333, ../scss/groups.scss */
-.cats.on .cat {
-  -webkit-transform: scale(0.5, 0.5);
-  -moz-transform: scale(0.5, 0.5);
-  -ms-transform: scale(0.5, 0.5);
-  -o-transform: scale(0.5, 0.5);
-  transform: scale(0.5, 0.5);
-  opacity: .3;
-}
-/* line 336, ../scss/groups.scss */
-.cats.on .cat.on {
-  opacity: 1;
-  color: cornflowerblue;
-}
 
-/* line 345, ../scss/groups.scss */
+@media only screen and (max-width: 500px) {
+  /* line 340, ../scss/groups.scss */
+  .cats .cat {
+    width: 100%;
+    height: auto;
+    line-height: 3em;
+  }
+  /* line 346, ../scss/groups.scss */
+  .cats .topics .topic {
+    font-size: 12px;
+    max-width: 10em;
+  }
+}
+/* line 355, ../scss/groups.scss */
 .cats .topics {
   line-height: 1em;
   position: absolute;
@@ -380,32 +376,30 @@
   padding: 0;
   margin: 0;
 }
-/* line 353, ../scss/groups.scss */
+/* line 363, ../scss/groups.scss */
 .cats .topics .topic {
   color: cornflowerblue;
   border: 1px solid cornflowerblue;
   padding: 0 1em;
   line-height: 30px;
-  -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
+  -webkit-border-radius: 30px;
   border-radius: 30px;
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   white-space: nowrap;
+  background: white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -moz-transition: all 0.2s, opacity 0s, background 0s, color 0s;
+  -o-transition: all 0.2s, opacity 0s, background 0s, color 0s;
+  -webkit-transition: all 0.2s, opacity 0s, background 0s, color 0s;
+  transition: all 0.2s, opacity 0s, background 0s, color 0s;
 }
-/* line 365, ../scss/groups.scss */
+/* line 378, ../scss/groups.scss */
 .cats .topics .topic.on {
   background: cornflowerblue;
   color: white;
-}
-/* line 369, ../scss/groups.scss */
-.cats .topics .topic.animate {
-  -webkit-transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s linear;
-  -moz-transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s linear;
-  -o-transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s linear;
-  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s linear;
 }
