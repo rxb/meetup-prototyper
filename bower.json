@@ -1,16 +1,21 @@
 {
-	"name": "meetup-prototyping-tool",
-	"version": "0.0.2",
-	"description": "prototyping with ractive for meetup",
-	"main": [
-		"**/*."
-	],
-	"dependencies": {
-        "bourbon": null,
-		"sassquatch": null,
-		"jquery": null,
-		"moment": null,
-        "ractive": null,
-        "jquery-waypoints": null
-	}
+  "name": "meetup-prototyping-tool",
+  "version": "0.0.2",
+  "description": "prototyping with ractive for meetup",
+  "main": [
+    "**/*."
+  ],
+  "dependencies": {
+    "bourbon": null,
+    "sassquatch": null,
+    "jquery": null,
+    "moment": null,
+    "ractive": null,
+    "jquery-waypoints": null
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-sass": "~0.8.1",
+    "grunt-contrib-watch": "~0.6.1"
+  }
 }
