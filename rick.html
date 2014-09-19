@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="js/helpers_ractive.js"></script>
 	<script type="text/javascript" src="js/gimme.js"></script>
 	<script type="text/javascript" src="js/extras.js"></script>
+	<script type="text/javascript" src="js/jquery-ajax-localstorage-cache.js"></script><!-- avoid repeated ajax calls -->
 
 	<link href="css/whitney.css" type="text/css" rel="stylesheet" /> <!-- whitney will get bowerized -->
 	<link href="css/patch.css" type="text/css" rel="stylesheet" /> <!-- this includes sassquatch -->
@@ -403,8 +404,7 @@ $(function(){
 	// Let's go!
 	var gme = new Gimme(shoppingList, function(){
 		
-		
-		var ractive = new Ractive( {el: 'body', template: '#main-template', data: $.extend(gme.context, extraContext) });
+		var ractive = new Ractive( {el: 'body', template: '#main-template', data: $.extend(this.context, extraContext) });
 		
 			defaultRenderCompleteActions(); // do standard jquery magicks			
 					
@@ -438,8 +438,8 @@ $(function(){
 			// TODO support multiple events per day
 			var cal_events = {};
 			
-			for(var i = 0; i < gme.context.events.length; i++){
-				var ev = gme.context.events[i];
+			for(var i = 0; i < this.context.events.length; i++){
+				var ev = this.context.events[i];
 				var ev_date = moment( ev.time ).format("MM-DD-YYYY");
 				cal_events[ev_date] = "<div>"+ev.name+"</div>";
 			}
